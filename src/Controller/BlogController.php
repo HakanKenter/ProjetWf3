@@ -23,7 +23,7 @@ class BlogController extends AbstractController
     public function home()
     {
         return $this->render('blog/home.html.twig', [
-            'title' => "Bonjour et bienvenue sur notre ste internet !"
+            'title' => "Bonjour et bienvenue sur notre site internet !"
         ]);
     }
 }
