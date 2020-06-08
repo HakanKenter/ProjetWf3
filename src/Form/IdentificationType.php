@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class IdentificationType extends AbstractType
 {
@@ -16,7 +17,14 @@ class IdentificationType extends AbstractType
             ->add('nom')
             ->add('pseudo')
             ->add('ville')
-            ->add('civilite')
+            ->add('civilite', ChoiceType::class, [
+                'choices' => [
+                    'Genre' => [
+                        'Femme' => 'femme',
+                        'Homme' => 'homme',
+                    ]
+                ]
+            ])
             ->add('adresse')
             ->add('password')
             ->add('confirm_password')
