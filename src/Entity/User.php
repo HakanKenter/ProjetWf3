@@ -4,11 +4,22 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *  fields={"email"},
+ *  message="Cette Email est déjà utilisée !",
+ * )
+ * @UniqueEntity(
+ *  fields={"pseudo"},
+ *  message="Ce pseudo est déjà utilisée !",
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,21 +30,27 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, minMessage = "Veuillez saisir un prénom valide.")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, minMessage = "Veuillez saisir un nom valide.")
+     * 
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 3, minMessage = "Votre pseudo doit contenir au minimum 3 caractères.")
+     * 
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 3, minMessage = "Veuillez saisir une ville.")
      */
     private $ville;
 
@@ -44,11 +61,15 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 3, minMessage = "Veuillez saisir votre adresse.")
+     * 
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 8, minMessage = "Votre mot de passe doit faire au minimum 8 caractères")
+     * @Assert\EqualTo(propertyPath="confirm_password", message="Les mots de passes ne correspondent pas")
      */
     private $password;
 
@@ -61,8 +82,16 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email
      */
     private $email;
+
+    public $cgv;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreatedAt;
 
     public function getId(): ?int
     {
@@ -173,6 +202,39 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUsername()
+    {
+        
+    }
+
+    public function eraseCredentials()
+    {
+        
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+    public function getRoles()
+    {
+        return ['ROLES_USER'];
+        // return $this->Roles;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }

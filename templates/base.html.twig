@@ -10,6 +10,7 @@
 
             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+
         {% endblock %}
     </head>
     <body>
@@ -22,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Déposer une annonce</a>
+                    <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
                 </li>
                 {# <li class="nav-item">
                     <a class="nav-link" href="#">Mes recherches</a>
@@ -48,10 +49,20 @@
             </div>
         </nav>
 
+        <div id="desposer-annonce" class="deposer-annonce container col-md-5 p-3">
+            <h2 class="deposer-annonce-titre col-md-6 text-center p-2 m-3 rounded">Déposer une annonce</h2>
+            <h5 class="mt-5 text-white">Bonjour !</h5>
+            <p class="text-white">Inscrivez-vous ou connnectez-vous pour déposer une annonce.</p>
+            <div class="col-md-8 d-flex justify-content-around mt-5"> 
+                <a class="rounded btn btn-dark" href="#">Connectez-vous</a>
+                <a class="rounded btn btn-dark" href="{{ path('registration') }}">Inscrivez-vous</a>
+            </div>
+        </div>
+
         {#######################################################################  Header  #######################################################################################}
 
         {# {% if app.request  %} #}
-            <div class="container-fluid contenu-base p-0">
+            <div id="header" class="container-fluid contenu-base p-0">
 
             <div id="sur-carousel">
                 
@@ -124,7 +135,7 @@
         {##########################################################################################################################################################################}
 
 
-        <div class="container-fluid contenu-base2 p-0">
+        <div id="block-body" class="container-fluid contenu-base2 p-0">
             {% block body %}
 
                 
@@ -133,7 +144,7 @@
 
         {# {{ dump(app) }} #}
 
-        <div class="bg-dark mx-auto p-3 text-white ">
+        <div id="article" class="bg-dark mx-auto p-3 text-white ">
             <div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
                 <div class="col-md-5">
                     <h3>A propos de nous</h3>
@@ -145,15 +156,15 @@
                 <div class="col-md-5">
                     <h3>Besoin d'aide ?</h3>
                     <ul class="">
-                        <li class="">Contact</li>
-                        <li class="">CVG</li>
-                        <li class="">Mentions Légale</li>
+                        <li class=""><a href="#">Contact</a></li>
+                        <li class=""><a href="{{ path('CGV') }}">CGV</a></li>
+                        <li class=""><a href="#">Mentions Légale</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <footer class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
+        <footer id="footer" class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
 
             <div>
                 &copy; 2020 - ProjetWf3 - Site d'annonce
@@ -167,6 +178,8 @@
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+            <script src="js/app.js"></script>
 
         {% endblock %}
     </body>
