@@ -1,9 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block body %}
 
+<h1 class="display-4 my-4 mx-auto text-center">Inscription</h1>
 
-{% block body %}
+{{ form_start(formIdentification, { 'attr' : { 'class' : 'col-md-6 mx-auto mb-5' }}) }} {{ form_row(formIdentification.prenom) }} {{ form_row(formIdentification.nom) }} {{ form_row(formIdentification.civilite) }} {{ form_row(formIdentification.ville)
+}} {{ form_row(formIdentification.password, {'label' : 'Mot de passe', 'attr' : { 'placeholder' : 'Entrez votre mot de passe' }}) }} {{ form_row(formIdentification.confirm_password) }} {{ form_row(formIdentification.pseudo) }} {{ form_row(formIdentification.adresse)
+}} {{ form_row(formIdentification.birth) }}
 
-    <h1 class="display-4 my-4 mx-auto text-center">Inscription</h1>
+<form action="/action_page.php">
+    <div class="form-group">
+        <input class="form-controle mr-2" type="checkbox" id="cgv" name="cgv">
+        <label for="vehicle1">J'accepte les Conditions Générales de Ventes</label><br>
+    </div>
+
+ 
+    <button class="btn btn-dark col-md-2" type="submit">S'incrire</button>
+</form>
+{{ form_end(formIdentification) }} {% endblock %}
 
     {{ form_start(formIdentification, { 'attr' : { 'class' : 'col-md-6 mx-auto mb-5' }}) }}
 
@@ -32,3 +44,4 @@
 
     {{ form_end(formIdentification) }}
 {% endblock %}
+ 
