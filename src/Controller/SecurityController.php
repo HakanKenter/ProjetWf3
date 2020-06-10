@@ -63,6 +63,23 @@ class SecurityController extends AbstractController
     }
 
     /**
+
+     * @Route("/connexion", name="security_login")
+     */
+    public function login()
+    {
+        return $this->render('security/login.html.twig');
+    }
+
+    /**
+     * @Route("/deconnexion", name="security_logout")
+     */
+    public function logout()
+    {
+    }
+        
+
+    /**
      * @Route("registration/cgv", name="CGV")
      */
     public function cgv()
@@ -84,5 +101,6 @@ class SecurityController extends AbstractController
     public function politique_confidentialite()
     {
         return $this->render('security/politiqueConfidentialite.html.twig');
+
     }
 }
