@@ -32,12 +32,12 @@ class BlogController extends AbstractController
     // /**
     //  * @Route("/", name="home")
     //  */
-    // public function home()
-    // {
-    //     return $this->render('blog/home.html.twig', [
-    //         'title' => "Bonjour et bienvenue sur notre site internet !"
-    //     ]);
-    // }
+    public function home()
+    {
+        return $this->render('blog/home.html.twig', [
+            'title' => "Bonjour et bienvenue sur notre site internet !"
+        ]);
+    }
 
     // /**
     //  * @Route("/blog/compte", name="compte")
