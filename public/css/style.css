@@ -5,6 +5,10 @@
     position: relative; */
 }
 
+/* .navbar{
+    position: fixed;
+} */
+
 #sur-carousel{
     position: absolute;
     z-index: 2;

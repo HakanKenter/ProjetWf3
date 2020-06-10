@@ -57,7 +57,8 @@ class SecurityController extends AbstractController
 
         return $this->render('security/registration.html.twig', [
             'formIdentification' => $form->createView(),
-            'error' => $error
+            'error' => $error,
+            'errorAge' => "Vous devez avoir au moin 18 ans pour vous inscrire"
         ]);
     }
 

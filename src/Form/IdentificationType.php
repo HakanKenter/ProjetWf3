@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -31,12 +32,11 @@ class IdentificationType extends AbstractType
             ->add('adresse')
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
-            ->add('birth')
+            ->add('birth', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
             ->add('email')
-            // ->add('cgv', CheckboxType::class, [
-            //     'label'    => 'J\'accepte les Conditions Générales de Ventes',
-            //     'required' => true
-            // ]);
         ;
     }
 
