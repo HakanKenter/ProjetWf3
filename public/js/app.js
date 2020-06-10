@@ -1,19 +1,46 @@
-// function div1(elem){
-//     test2 = document.getElementById(elem);
-// }
+header = document.getElementById("header");
+blockBody = document.getElementById("block-body");
+article = document.getElementById("article");
+footer = document.getElementById("footer");
+deposerAnnonce = document.getElementById("deposer-annonce");
+// eventClick = addEventListener('click', NoneDeposerAnnonce);
 
+// __________________________________________________________________________________________________________________________________________________________________________
 
+function blockDeposerAnnonce(){
 
-function div4(){
-    document.getElementById("header").style.opacity = "0.3";
-    document.getElementById("block-body").style.opacity = "0.3";
-    document.getElementById("article").style.opacity = "0.3";
-    document.getElementById("footer").style.opacity = "0.3";
+    header.style.opacity = "0.3";
+    blockBody.style.opacity = "0.3";
+    article.style.opacity = "0.3";
+    footer.style.opacity = "0.3";
     document.getElementById("desposer-annonce").style.display = "flex";
     document.getElementById("desposer-annonce").style.flexDirection = "column";
     document.getElementById("desposer-annonce").style.justifyContent = "space-around";
     document.getElementById("desposer-annonce").style.alignItems = "center";
-    ;
+};
+
+document.getElementById("lien-deposer-annonce").addEventListener("click", blockDeposerAnnonce);
+
+// __________________________________________________________________________________________________________________________________________________________________________
+
+
+function NoneDeposerAnnonce(){
+
+    header.style.opacity = "1";
+    blockBody.style.opacity = "1";
+    article.style.opacity = "1";
+    footer.style.opacity = "1";
+    document.getElementById("desposer-annonce").style.display = "none";
 }
 
-document.getElementById("lien-deposer-annonce").addEventListener("click", div4)
+if(blockDeposerAnnonce){
+    console.log('yesss');
+    header.addEventListener("click", NoneDeposerAnnonce);
+    blockBody.addEventListener("click", NoneDeposerAnnonce);
+    article.addEventListener("click", NoneDeposerAnnonce);
+    footer.addEventListener("click", NoneDeposerAnnonce);
+}
+
+// __________________________________________________________________________________________________________________________________________________________________________
+
+

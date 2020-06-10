@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
@@ -77,6 +78,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\LessThanOrEqual("-16 years", message="Vous devez avoir au moin 16 ans pour vous inscrire.")
      */
     private $birth;
 

@@ -16,7 +16,9 @@
         {{ form_row(formIdentification.confirm_password, {'label' : 'Confirmez votre mot de passe'}) }}
         {{ form_row(formIdentification.ville) }}
         {{ form_row(formIdentification.adresse) }}
-        {{ form_row(formIdentification.birth, {'label' : 'Date de naissance' , 'attr' : { 'class' : 'd-flex col-md-4 justify-content-between p-0' }  }) }}
+        {{ form_row(formIdentification.birth, {'label' : 'Date de naissance' , 'attr' : { 'class' : 'col-md-4' }  }) }}
+
+    
 
         <div>
             <input class="form-controle mr-2" type="checkbox" id="cgv" name="cgv" required="true" oninvalid="this.setCustomValidity('Veuillez acceptez les Conditions Générale de Ventes')" oninput="setCustomValidity('')">
