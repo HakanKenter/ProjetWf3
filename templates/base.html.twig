@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+ 
 
 <head>
     <meta charset="UTF-8">
@@ -16,13 +17,32 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ path('blog') }}">ProjetWf3</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}ProjetWf3{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+
+            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('blog') }}">ProjetWf3</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+ 
                 <span class="navbar-toggler-icon"></span>
             </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Déposer une annonce</a>
+                    <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
                 </li>
                 {#
                 <li class="nav-item">
@@ -50,10 +70,27 @@
         </div>
     </nav>
 
+
     {####################################################################### Header #######################################################################################} {# {% if app.request %} #}
     <div class="container-fluid contenu-base p-0">
 
         <div id="sur-carousel">
+
+        <div id="desposer-annonce" class="deposer-annonce container col-md-5 p-3">
+            <h2 class="deposer-annonce-titre col-md-6 text-center p-2 m-3 rounded">Déposer une annonce</h2>
+            <h5 class="mt-5 text-white">Bonjour !</h5>
+            <p class="text-white">Inscrivez-vous ou connnectez-vous pour déposer une annonce.</p>
+            <div class="col-md-8 d-flex justify-content-around mt-5"> 
+                <a class="rounded btn btn-dark" href="#">Connectez-vous</a>
+                <a class="rounded btn btn-dark" href="{{ path('registration') }}">Inscrivez-vous</a>
+            </div>
+        </div>
+
+        {#######################################################################  Header  #######################################################################################}
+
+        {# {% if app.request  %} #}
+            <div id="header" class="container-fluid contenu-base p-0">
+ 
 
             {% block Bienvenue %} {% endblock %}
 
@@ -119,9 +156,14 @@
     {# {% endif %} #} {##########################################################################################################################################################################}
 
 
+
     <div class="container-fluid contenu-base2 p-0">
         {% block body %} {% endblock %}
     </div>
+
+        <div id="block-body" class="container-fluid contenu-base2 p-0">
+            {% block body %}
+
 
     {# {{ dump(app) }} #}
 
@@ -144,9 +186,31 @@
                     <li class="">CVG</li>
                     <li class="">Mentions Légale</li>
                 </ul>
+
+        {# {{ dump(app) }} #}
+
+        <div id="article" class="bg-dark mx-auto p-3 text-white ">
+            <div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
+                <div class="col-md-5">
+                    <h3>A propos de nous</h3>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div><hr>
+
+                <div class="col-md-5">
+                    <h3>Besoin d'aide ?</h3>
+                    <ul class="">
+                        <li class=""><a href="#">Contact</a></li>
+                        <li class=""><a href="{{ path('CGV') }}">CGV</a></li>
+                        <li class=""><a href="#">Mentions Légale</a></li>
+                    </ul>
+                </div>
+ 
             </div>
         </div>
     </div>
+
 
     <footer class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
 
@@ -155,6 +219,9 @@
         </div>
 
     </footer>
+
+        <footer id="footer" class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
+
 
 
     {% block javascripts %}
@@ -166,4 +233,12 @@
     {% endblock %}
 </body>
 
+
 </html>
+
+            <script src="js/app.js"></script>
+
+        {% endblock %}
+    </body>
+</html>
+ 
