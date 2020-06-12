@@ -66,6 +66,4 @@ class BlogController extends AbstractController
             'formAnnonce' => $form->createView()
         ]);
     }
-
-    
 }
