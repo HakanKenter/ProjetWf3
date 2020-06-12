@@ -137,12 +137,27 @@
 							</select>
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success mt-5 col-md-5">
 							Rechercher
 						</button>
                 </div>
             </form>
+
+            </div>
+        {# {% endif %} #}
+        
+        {# {{ dump(app) }}  #}
+        {##########################################################################################################################################################################}
+
+
+        <div id="block-body" class="container-fluid contenu-base2 p-0">
+            {% block body %}
+
+        
+            {% endblock %}
+
         </div>
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

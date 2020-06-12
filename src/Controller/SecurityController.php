@@ -103,4 +103,25 @@ class SecurityController extends AbstractController
         return $this->render('security/politiqueConfidentialite.html.twig');
 
     }
+
+    /**
+     * @Route("/connexion/motdepasse", name="motdepasse")
+     */
+    public function mot_de_passe(Request $request)
+    {
+
+        dump($request);
+        $msg = "Ta réussi...";
+
+        if($request->request->count() > 0)
+        {
+            return $this->render('security/motdepasse.html.twig', [
+                "msgdata" => $msg
+            ]);
+        }
+
+        return $this->render('security/motdepasse.html.twig');
+
+        
+    }   
 }
