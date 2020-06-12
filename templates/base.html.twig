@@ -1,123 +1,130 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}ProjetWf3{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>
-        {% block title %} ProjetWf3 {% endblock %}
-    </title>
-    {% block stylesheets %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> {% endblock %}
-</head>
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('blog') }}">ProjetWf3</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('blog') }}">ProjetWf3</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a id="lien-deposer-annonce" class="nav-link" href="#">
-							Déposer une annonce
-						</a>
-                </li>
-                {#
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Mes recherches</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Favori</a>
-                </li> #} {% if not app.user %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('registration') }}">Compte</a>
-                </li>
-                {% endif %} {% if app.user %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Compte
-							</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="#">Profil</a>
-                        <a class="dropdown-item" href="#">Mes annonces</a> {% if not app.user %}
-                        <a class="dropdown-item" href="{{ path('security_login') }} ">
-										Connexion
-									</a> {% else %}
-                        <a class="dropdown-item" href="{{ path('security_logout') }} ">
-										Déconnexion
-									</a> {% endif %}
-                    </div>
-                </li>
-                {% endif %}
-            </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" />
-            </form>
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
+                    </li>
+                    {#
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mes recherches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Favori</a>
+                    </li> #} 
+                    {% if not app.user %}
+                    
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('registration') }}">Compte</a>
+                        </li>
+
+                    {% endif %} 
+
+                    {% if app.user %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Compte
+                                    </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="#">Profil</a>
+                                <a class="dropdown-item" href="#">Mes annonces</a> 
+                                {% if not app.user %}
+
+                                    <a class="dropdown-item" href="{{ path('security_login') }} ">Connexion</a>
+
+                                {% else %}
+
+                                    <a class="dropdown-item" href="{{ path('security_logout') }} ">Déconnexion</a> 
+
+                                {% endif %}
+                            </div>
+                        </li>
+
+                    {% endif %}
+                </ul>
+                <form class="form-inline my-2 my-md-0">
+                    <input class="form-control" type="text" placeholder="Search"/>
+                </form>
+            </div>
+        </nav>
+
+        <div id="desposer-annonce" class="deposer-annonce container col-md-5 p-3">
+            <h2 class="deposer-annonce-titre col-md-6 text-center p-2 m-3 rounded">Déposer une annonce</h2>
+            <h5 class="mt-5 text-white">Bonjour !</h5>
+            <p class="text-white">Inscrivez-vous ou connnectez-vous pour déposer une annonce.</p>
+            <div class="col-md-8 d-flex justify-content-around mt-5"> 
+                <a class="rounded btn btn-dark" href="#">Connectez-vous</a>
+                <a class="rounded btn btn-dark" href="{{ path('registration') }}">Inscrivez-vous</a>
+            </div>
         </div>
-    </nav>
 
-    <div id="desposer-annonce" class="deposer-annonce container col-md-5 p-3">
-        <h2 class="deposer-annonce-titre col-md-6 text-center p-2 m-3 rounded">
-            Déposer une annonce
-        </h2>
-        <h5 class="mt-5 text-white">
-            Bonjour !
-        </h5>
-        <p class="text-white">
-            Inscrivez-vous ou connnectez-vous pour déposer une annonce.
-        </p>
-        <div class="col-md-8 d-flex justify-content-around mt-5">
-            <a class="rounded btn btn-dark" href="#">Connectez-vous</a>
-            <a class="rounded btn btn-dark" href="{{ path('registration') }}">
-					Inscrivez-vous
-				</a>
-        </div>
-    </div>
+        {#######################################################################  Header  #######################################################################################}
 
-    {# ###################################################################### Header ###################################################################################### #} {# {% if app.request %} #}
-    <div id="header" class="container-fluid contenu-base p-0">
-        <div id="sur-carousel"> {% block Bienvenue %}{% endblock %}
+        {# {% if app.request  %} #}
+            <div id="header" class="container-fluid contenu-base p-0">
 
-            <form method="post" class="col-md-5">
-                <div class="form-row">
-                    <div id="cadre-recherche" class="form-group col-md-12 mx-auto p-3 d-flex justify-content-around m-0">
-                        <select class="form-control col-md-3" name="categorie" id="categorie">
-								<option value="vetement">
-									Vêtement
-								</option>
-								<option value="vehicule">
-									Véhicule
-								</option>
-								<option value="maison">
-									Maison
-								</option>
-								<option value="loisirs">
-									Loisirs
-								</option>
-								<option value="multimedia">
-									Multimédia
-								</option>
-								<option value="materielProfessionel">
-									Matériel Professionnel
-								</option>
-								<option value="divers">
-									Divers
-								</option>
-							</select>
-                        <input type="text" class="form-control col-md-3" id="recherche" name="recherche" placeholder="Recherche" />
-                        <a href="#">
-                            <i class="fas fa-search" style="color: white; font-size:30px"></i>
-                        </a>
-                        <input type="text" class="form-control col-md-3" id="ville" name="ville" placeholder="Ville" />
-                    </div>
+                <div id="sur-carousel">
+                    
+                    {% block Bienvenue %}
+                        
+                    {% endblock %}
+
+                    <form method="post" class="col-md-5">
+                        <div class="form-row">
+                            <div id="cadre-recherche" class="form-group col-md-12 mx-auto p-3 d-flex justify-content-around m-0">
+                                <select class="form-control col-md-3" name="categorie" id="categorie">
+                                    <option value="vetement">Vêtement</option>
+                                    <option value="vehicule">Véhicule</option>
+                                    <option value="maison">Maison</option>
+                                    <option value="loisirs">Loisirs</option>
+                                    <option value="multimedia">Multimédia</option>
+                                    <option value="materielProfessionel">Matériel Professionnel</option>
+                                    <option value="divers">Divers</option>
+                                </select>
+                                <input type="text" class="form-control col-md-3" id="recherche" name="recherche" placeholder="Recherche">
+                                <a href="#"><i class="fas fa-search" style="color: white; font-size:30px"></i></a>
+                                <input type="text" class="form-control col-md-3" id="ville" name="ville" placeholder="Ville">
+                            </div>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="form-group col-md-12 d-flex justify-content-around">
+                                <select class="form-control col-md-3" name="date" id="date">
+                                    <option value="recent">Recent</option>
+                                    <option value="ancien">Ancien</option>
+                                </select>
+                                <select class="form-control col-md-3" name="prix" id="prix">
+                                    <option value="prixCroissant">Prix croissant</option>
+                                    <option value="prixDecroissant">Prix décroissant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success mt-5 col-md-5">Rechercher</button>
+                        </div>
+                    </form>
+                        
                 </div>
-
                 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
@@ -130,35 +137,16 @@
                         <div class="carousel-item">
                             <img class="d-block w-100" src="https://montblanctreks.com/thumbs/home/home-hero-1-1920x1077-1920x800-q40.jpg" alt="Third slide">
                         </div>
-
-                <div class="form-row mt-3">
-                    <div class="form-group col-md-12 d-flex justify-content-around">
-                        <select class="form-control col-md-3" name="date" id="date">
-								<option value="recent">
-									Recent
-								</option>
-								<option value="ancien">
-									Ancien
-								</option>
-							</select>
-                        <select class="form-control col-md-3" name="prix" id="prix">
-								<option value="prixCroissant">
-									Prix croissant
-								</option>
-								<option value="prixDecroissant">
-									Prix décroissant
-								</option>
-							</select>
-
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success mt-5 col-md-5">
-							Rechercher
-						</button>
-                </div>
-            </form>
 
             </div>
         {# {% endif %} #}
@@ -170,86 +158,49 @@
         <div id="block-body" class="container-fluid contenu-base2 p-0">
             {% block body %}
 
-        
+                
             {% endblock %}
-
         </div>
 
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://picsum.photos/1920/600" alt="First slide" />
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://picsum.photos/seed/picsum/1920/600" alt="Second slide" />
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://picsum.photos/1920/600.jpg" alt="Third slide" />
+        {# {{ dump(app) }} #}
+
+        <div id="article" class="bg-dark mx-auto p-3 text-white ">
+            <div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
+                <div class="col-md-5">
+                    <h3>A propos de nous</h3>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div><hr>
+
+                <div class="col-md-5">
+                    <h3>Besoin d'aide ?</h3>
+                    <ul class="">
+                        <li class=""><a href="#">Contact</a></li>
+                        <li class=""><a href="{{ path('CGV') }}">CGV</a></li>
+                        <li class=""><a href="#">Mentions Légale</a></li>
+                    </ul>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-    </div>
-    {# {% endif %} #} {# ######################################################################################################################################################################## #}
 
-    <div id="block-body" class="container-fluid contenu-base2 p-0"> {% block body %}{% endblock %}
-    </div>
+        <footer id="footer" class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
 
-    {# {{ dump(app) }} #}
-
-    <div id="article" class="bg-dark mx-auto p-3 text-white">
-        <div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
-            <div class="col-md-5">
-                <h3>
-                    A propos de nous
-                </h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                    survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+            <div>
+                &copy; 2020 - ProjetWf3 - Site d'annonce
             </div>
-            <hr/>
+            
+        </footer>
 
-            <div class="col-md-5">
-                <h3>
-                    Besoin d'aide ?
-                </h3>
-                <ul class="">
-                    <li class="">
-                        <a href="#">Contact</a>
-                    </li>
-                    <li class="">
-                        <a href="{{ path('CGV') }}">CGV</a>
-                    </li>
-                    <li class="">
-                        <a href="#">Mentions Légale</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <footer id="footer" class="bg-secondary mx-auto p-3 text-white d-flex justify-content-center">
-        <div>
-            &copy; 2020 - ProjetWf3 - Site d'annonce
-        </div>
-    </footer>
+        {% block javascripts %}
 
-    {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-    <script src="js/app.js"></script>
-    {% endblock %}
-</body>
+            <script src="js/app.js"></script>
 
+        {% endblock %}
+    </body>
 </html>

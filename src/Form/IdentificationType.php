@@ -37,6 +37,7 @@ class IdentificationType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('email')
+            ->add('image')
         ;
     }
 
