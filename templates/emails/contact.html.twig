@@ -1,0 +1,21 @@
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="col-md-5 mx-auto alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table table-bordered">
+        <tr>
+            <td>Email</td>
+            <td>{{ contact.email }}</td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td>J'ai pas de message</td>
+        </tr>
+    </table>
+{% endblock %}
+
+

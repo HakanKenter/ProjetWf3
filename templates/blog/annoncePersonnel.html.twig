@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+
+{% block body %} 
+
+    <h2 class="text-center my-5 col-md-3 mx-auto border p-2">Page personnelle</h2><hr>
+    
+    <div class="row d-flex justify-content-between mt-5 mb-5" >
+        <div class="col-md-4 rounded">
+            <div class="col-md-10 bg-dark rounded d-flex flex-column justify-content-center ml-5 text-white text-center">
+                <img class="mt-4 rounded" src="{{ user.image|replace({"640/480": "350/250"}) }}"><hr>
+                <p class="p-2 rounded bg-secondary">{{ user.pseudo }}</p>
+                <p class="p-2 rounded bg-secondary">{{ user.email|raw }}</p>
+                {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="col-md-12 d-flex justify-content-center mt-5 pt-5">
+
+                <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white">
+                    {% for annoncePersonnel in user.annonce %}
+                        <div class="col-md-3 border border-dark rounded m-4 p-3 bg-secondary">
+                            <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({"640/480": "320/140"}) }}">
+                            <strong>{{ annoncePersonnel.title }}</strong>
+                            <p>{{ annoncePersonnel.prix }} €</p>
+                            <p class="text-right">Posté le {{ annoncePersonnel.CreatedAt|date('d/m/Y') }} à {{ annoncePersonnel.CreatedAt|date('H:i:s') }}</p>
+                            <a class="btn btn-success" href="#">Voir</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

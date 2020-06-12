@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -94,6 +96,33 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $CreatedAt;
+
+    private $Username;
+
+    private $eraseCredentials;
+
+    private $salt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
+     */
+    private $annonce;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $telephone;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+        $this->annonce = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -220,13 +249,12 @@ class User implements UserInterface
 
     public function getSalt()
     {
-
+        return $this->salt;
     }
 
     public function getRoles()
     {
         return ['ROLES_USER'];
-        // return $this->Roles;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
@@ -240,4 +268,70 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonce(): Collection
+    {
+        return $this->annonce;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonce->contains($annonce)) {
+            $this->annonce[] = $annonce;
+            $annonce->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonce->contains($annonce)) {
+            $this->annonce->removeElement($annonce);
+            // set the owning side to null (unless already changed)
+            if ($annonce->getUser() === $this) {
+                $annonce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    // public function __toString()
+    // {
+    //     return $this->birth;
+    // }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    // public function getTelephone(): ?string
+    // {
+    //     return $this->telephone;
+    // }
+
+    // public function setTelephone(string $telephone): self
+    // {
+    //     $this->telephone = $telephone;
+
+    //     return $this;
+    // }
+
+    // public function __toString()
+    // {
+    //     return $this->telephone;
+    // }
+
 }

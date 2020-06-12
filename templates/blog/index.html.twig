@@ -16,11 +16,6 @@
             <div class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center">
                 <img src="{{ nouvelleAnnonce.Image }}" alt="{{ nouvelleAnnonce.title }}" class="col-md-12 rounded"><hr>
                 <h2>{{ nouvelleAnnonce.title }}</h2>
-
-                <p>{{ nouvelleAnnonce.prix }}</p><hr>
-
-                <p>Posté le {{ nouvelleAnnonce.CreatedAt|date("d/m/Y") }} à {{ nouvelleAnnonce.CreatedAt|date(" H:i:s") }}</p>
-                {# <p><a class="btn btn-secondary" href="{{ path('blog_show', {'id': nouvelleAnnonce.id }) }}" role="button">Voir l'annonce &raquo;</a></p> #}
             </div>
 
         {% endfor %}
