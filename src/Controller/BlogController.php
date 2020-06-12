@@ -76,6 +76,4 @@ class BlogController extends AbstractController
             'user' => $user
         ]);
     }
-
-    
 }
