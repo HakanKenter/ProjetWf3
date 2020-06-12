@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+    {{ form_start(formContact, { 'attr' : { 'class' : 'my-4 col-md-4 mx-auto'}}) }}
+
+        {{ form_row(formContact.firstname) }}
+        {{ form_row(formContact.lastname) }}
+        {{ form_row(formContact.phone) }}
+        {{ form_row(formContact.email) }}
+        {{ form_row(formContact.message) }}
+
+        <button class="btn btn-dark col-md-2 my-4" type="submit">S'incrire</button>
+
+    {{ form_end(formContact) }}
+
+    
+
+{% endblock %}
+

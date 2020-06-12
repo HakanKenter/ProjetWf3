@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
-use App\Form\ContactType;
 use Swift_Message;
+use App\Entity\User;
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Form\ContactTType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,42 +16,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="blog_contact")
      */
-    public function index(Request $request, \Swift_Mailer $mailer)
+    public function contact(Request $request, EntityManagerInterface $manager, ContactNotification $notification)
     {
-        $form = $this->createForm(ContactType::class);
+        $contact = new Contact();
+        $form = $this->createForm(ContactTType::class, $contact);
+
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
-            $contact = $form->getData();
 
-            // Ici nous enverrons le mail
-            $message = (new Swift_Message('Nouveau Contact'))
-                // On attribute l'expediteur
-                ->setFrom($contact['email'])
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $donne = $repo->findBy(array('prenom' => 'kenter'));
+        dump($donne[0]->getSalt());
 
-                // On attribut le destinataire
-                ->setTo('votre@adresse.fr')
+        if ($form->isSubmitted() && $form->isValid()) {
 
-                //On crée le message avec la vue twig
-                ->setBody(
-                    $this->renderView(
-                        'email/contact.html.twig', compact('contact')
-                    ),
-                    'text/html'
-                )
-            ;
-            // dd($contact);
-            $mailer->send($message);
-            
-            $this->addFlash('message', 'Le message à bien été envoyé');
-            //Cette ligne renvoi un message
-            // return $this->redirectToRoute('security_login');
+            $notification->notify($contact);
+            $this->addFlash('success', 'Votre Email a bien été envoyé');    
+
+            $manager->persist($contact); 
+            $manager->flush(); 
+
         }
-
-        return $this->render('contact/index.html.twig', [
-            'contactForm' =>  $form->createView()
+        
+        return $this->render("blog/contact.html.twig", [
+            'formContact' => $form->createView()
         ]);
     }
 }

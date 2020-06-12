@@ -13,15 +13,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    // /**
-    //  * @Route("/security", name="security")
-    //  */
-    // public function index()
-    // {
-    //     return $this->render('security/index.html.twig', [
-    //         'controller_name' => 'SecurityController',
-    //     ]);
-    // }
+    /**
+     * @Route("/security", name="security")
+     */
+    public function index()
+    {
+        return $this->render('security/index.html.twig', [
+            'controller_name' => 'SecurityController',
+        ]);
+    }
 
     /**
      * @Route("/registration", name="registration")
@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            // return $this->redirectToRoute('security_login'); // On redirige vers ma page de connexion après inscription
+            return $this->redirectToRoute('security_login'); // On redirige vers ma page de connexion après inscription
         }
 
         return $this->render('security/registration.html.twig', [
@@ -104,24 +104,21 @@ class SecurityController extends AbstractController
 
     }
 
-    /**
-     * @Route("/connexion/motdepasse", name="motdepasse")
-     */
-    public function mot_de_passe(Request $request)
-    {
+    // /**
+    //  * @Route("/connexion/motdepasse", name="motdepasse")
+    //  */
+    // public function mot_de_passe(Request $request)
+    // {
 
-        dump($request);
-        $msg = "Ta réussi...";
+    //     dump($request);
+    //     $msg = "Ta réussi...";
 
-        if($request->request->count() > 0)
-        {
-            return $this->render('security/motdepasse.html.twig', [
-                "msgdata" => $msg
-            ]);
-        }
-
-        return $this->render('security/motdepasse.html.twig');
-
-        
-    }   
+    //     if($request->request->count() > 0)
+    //     {
+    //         return $this->render('security/motdepasse.html.twig', [
+    //             "msgdata" => $msg
+    //         ]);
+    //     }
+    //     return $this->render('security/motdepasse.html.twig');
+    // }   
 }

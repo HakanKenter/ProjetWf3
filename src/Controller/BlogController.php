@@ -39,31 +39,41 @@ class BlogController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/blog/compte", name="compte")
+     */
+    public function compte()
+    {
+        $identification = new User;
+
+        $form = $this->createForm(IdentificationType::class, $identification);
+
+        return $this->render('blog/compte.html.twig', [
+            'formIdentification' => $form->createView() 
+        ]);
+    }
+
     // /**
-    //  * @Route("/blog/compte", name="compte")
+    //  * @Route("/blog/create", name="create")
     //  */
-    // public function compte()
+    // public function form()
     // {
-    //     $identification = new User;
+    //     $annonce = new Annonce;
 
-    //     $form = $this->createForm(IdentificationType::class, $identification);
+    //     $form = $this->createForm(AnnonceFormType::class, $annonce);
 
-    //     return $this->render('blog/compte.html.twig', [
-    //         'formIdentification' => $form->createView() 
+    //     return $this->render('blog/create.html.twig', [
+    //         'formAnnonce' => $form->createView()
     //     ]);
     // }
 
     /**
-     * @Route("/blog/create", name="create")
+     * @Route("/blog/{id}", name="annonce_personnel")
      */
-    public function form()
+    public function annoncePersonnel(User $user)
     {
-        $annonce = new Annonce;
-
-        $form = $this->createForm(AnnonceFormType::class, $annonce);
-
-        return $this->render('blog/create.html.twig', [
-            'formAnnonce' => $form->createView()
+        return $this->render('blog/annoncePersonnel.html.twig', [
+            'user' => $user
         ]);
     }
 }
