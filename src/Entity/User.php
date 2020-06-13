@@ -113,6 +113,11 @@ class User implements UserInterface
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $Roles = [];
+
     // /**
     //  * @ORM\Column(type="string", length=255)
     //  */
@@ -254,7 +259,8 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLES_USER'];
+        return $this->Roles;
+        // return ['ROLES_USER'];
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
@@ -334,4 +340,15 @@ class User implements UserInterface
     //     return $this->telephone;
     // }
 
+    public function __toString()
+    {
+        return $this->prenom;
+    }
+
+    public function setRoles(array $Roles): self
+    {
+        $this->Roles = $Roles;
+
+        return $this;
+    }
 }

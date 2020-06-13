@@ -1,0 +1,13 @@
+easy_admin:
+  design:
+    brand_color: '#710055'
+    menu:
+      - label: 'Blog'
+        icon: 'folder-plus'
+        children:
+          - { entity: 'Annonce', icon: 'folder-open', label: 'Annonce'}
+
+      - label: 'Accès'
+        icon: 'folder-plus'
+        children:
+          - { entity: 'User', icon: 'folder-open', label: 'User'}
