@@ -1,0 +1,15 @@
+easy_admin:
+  entities:
+    Annonce:
+      class: App\Entity\Annonce
+      form:
+        fields:
+          - {property: 'title'}
+          - {property: 'Prix'}
+          - {property: 'CreatedAt'}
+          - {property: 'user'}
+
+      list:
+        actions:
+          - {name: 'edit', icon: 'pencil-ruler', label: false}
+          - {name: 'delete', icon: 'trash-alt', label: false}
