@@ -9,10 +9,13 @@
     
     <div class="row d-flex justify-content-between mt-5 mb-5" >
         <div class="col-md-4 rounded">
-            <div class="col-md-10 bg-dark rounded d-flex flex-column justify-content-center ml-5 text-white text-center">
-                <img class="mt-4 rounded" src="{{ user.image|replace({"640/480": "350/250"}) }}"><hr>
+            <div class="col-md-10 bg-dark rounded d-flex flex-column justify-content-center ml-5 text-white text-center p-3">
+                <img class="mt-4 rounded" src="{{ user.image|replace({"640/480": "350/200"}) }}"><hr>
                 <p class="p-2 rounded bg-secondary">{{ user.pseudo }}</p>
                 <p class="p-2 rounded bg-secondary">{{ user.email|raw }}</p>
+                {% if app.user %}
+                    <a class="p-2 rounded bg-primary text-white text-decoration-none" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a>      
+                {% endif %}
                 {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
             </div>
         </div>

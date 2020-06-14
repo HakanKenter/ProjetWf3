@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h3 class="my-4 mx-auto text-center">Information personnel</h3>
+
+    <div class="col-md-6 mx-auto d-flex justify-content-center mt-5 mb-5 border p-3" >
+        <div class="col-md-6 rounded mr-3">
+            <div class="col-md-12 bg-dark mx-auto rounded d-flex flex-column justify-content-center text-white text-center p-3">
+                <img class="mt-4 rounded" src="{{ app.user.image|replace({"640/480": "350/210"}) }}"><hr>
+                <p class="p-2 rounded bg-secondary">{{ app.user.pseudo }}</p>
+                <p class="p-2 rounded bg-secondary">{{ app.user.email|raw }}</p>
+                <a class="p-2 rounded bg-primary text-white text-decoration-none" href="{{ path('annonce_personnel', {'id': app.user.id}) }}">Ma page personnel</a>
+                {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
+            </div>
+        </div>
+
+        <div class="col-md-6 border-left">
+            <div class="col-md-12 d-flex mt-5 pt-5">
+
+                {# <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white"> #}
+                    {{ form_start(formDonneePersonnel, { 'attr' : { 'class' : 'col-md-12 bg-secondary rounded p-3 text-white mb-5 ' }}) }}
+
+                    {{ form_row(formDonneePersonnel.image, { 'label' : "Photo de profil"}) }}
+                    {{ form_row(formDonneePersonnel.prenom) }}
+                    {{ form_row(formDonneePersonnel.nom) }}
+                    {{ form_row(formDonneePersonnel.email) }}
+                    {{ form_row(formDonneePersonnel.ville) }}
+                    {{ form_row(formDonneePersonnel.password, { 'label' : "Mot de passe"}) }}
+                    {{ form_row(formDonneePersonnel.confirm_password, { 'label' : "Confirmez votre mot de passe"}) }}
+                    {{ form_row(formDonneePersonnel.adresse) }}
+                    {{ form_row(formDonneePersonnel.pseudo) }}
+                    {{ form_row(formDonneePersonnel.civilite) }}
+                    {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance"}) }} 
+
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <button class="btn btn-dark" type="submit">Modifier</button>
+                    </div> 
+
+                    {{ form_end(formDonneePersonnel) }}
+                {# </div> #}
+            </div>
+        </div> 
+    </div>
+
+    
+
+    
+
+    {# {% endif %} #}
+    {# {{ dump(app); }} #}
+
+    
+{% endblock %}

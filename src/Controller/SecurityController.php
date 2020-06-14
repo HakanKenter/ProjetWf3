@@ -7,9 +7,10 @@ use App\Form\IdentificationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -59,6 +60,48 @@ class SecurityController extends AbstractController
             'formIdentification' => $form->createView(),
             'error' => $error,
             'errorAge' => "Vous devez avoir au moin 18 ans pour vous inscrire"
+        ]);
+    }
+
+    /**
+     * @Route("/blog/{id}/profil", name="modifierProfil")
+     */
+    public function registrations(User $user = null, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, AuthenticationUtils $authenticationUtils)
+    {
+        if(!$user)
+        {
+            $user = new User;
+        }
+
+        $form = $this->createForm(IdentificationType::class, $user); 
+
+        $form->handleRequest($request);
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            // if(!$user->getId())
+            // {
+            //     $user->setCreatedAt(new \DateTime);
+            // }
+
+            $user->setCreatedAt(new \DateTime());
+
+            $hash = $encoder->encodePassword($user, $user->getPassword());
+
+
+            $user->setPassword($hash); 
+
+            $manager->persist($user);
+            $manager->flush();
+        
+        }
+
+        return $this->render('security/information_personnel.html.twig',[
+            'formDonneePersonnel' => $form->createView(),
+            'editMode' => $user->getId()!== null
         ]);
     }
 

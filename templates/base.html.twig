@@ -25,17 +25,13 @@
                     <li class="nav-item active">
                         <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
                     </li>
-                    {#
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mes recherches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Favori</a>
-                    </li> #} 
                     {% if not app.user %}
                     
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('registration') }}">Compte</a>
+                            <a class="nav-link" href="{{ path('registration') }}">Inscritpion</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('security_login') }} ">Connexion</a>
                         </li>
 
                     {% endif %} 
@@ -43,20 +39,13 @@
                     {% if app.user %}
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Compte
-                                    </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compte</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="#">Profil</a>
-                                <a class="dropdown-item" href="#">Mes annonces</a> 
                                 {% if not app.user %}
-
-                                    <a class="dropdown-item" href="{{ path('security_login') }} ">Connexion</a>
-
                                 {% else %}
-
+                                    <a class="dropdown-item" href="{{ path('annonce_personnel', {'id': app.user.id}) }}">{{ app.user.pseudo }}</a>
+                                    <a class="dropdown-item" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Profil</a>
                                     <a class="dropdown-item" href="{{ path('security_logout') }} ">Déconnexion</a> 
-
                                 {% endif %}
                             </div>
                         </li>
@@ -70,6 +59,7 @@
                         </li>
 
                     {% endif %}
+
                 </ul>
                 <form class="form-inline my-2 my-md-0">
                     <input class="form-control" type="text" placeholder="Search"/>
