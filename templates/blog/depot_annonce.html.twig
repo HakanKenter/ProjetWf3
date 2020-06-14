@@ -15,20 +15,27 @@
     {{ form_start(formAnnonce, { 'attr' : { 'class' : 'col-md-6 bg-secondary rounded p-3 text-white mb-5 mx-auto' }} ) }}
 
 
-        {{ dump(userSS) }}
+        {# {{ dump(userSS) }} #}
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : {'disabled': 'disabled') }} #}
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : { 'value': app.user.id}}) }} #}
         {# <div class="form-group">
             <label for="user">Prenom</label>
             <input type='text' class="form-control" name="user" id="user">
         </div> #}
+
+        {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}    
+        {# {{ form_row(formAnnonce.category) }} #}
+
+        {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
+        {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }}
+         
         {# {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}                        #}
         {# {{ form_row(formAnnonce.user, {'attr': {'placeholder': "nom etulisateur"}} ) }}#}
         {# {{ form_row(formAnnonce.category) }}#}
 
         {# {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
         {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }} #}
-        
+
         <button type="submit" class="btn btn-success">                  
             {% if editMode %}
                 Enregistrer les modification
