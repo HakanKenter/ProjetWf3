@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% form_theme formAnnonce 'bootstrap_4_layout.html.twig' %}
+{# {% form_theme formAnnonce 'bootstrap_4_layout.html.twig' %} #}
 
 {% block body %}
 
-    <h1></h1>
+<div class="container mx-auto">
     <h1 class="text-center mt-3">
         {% if editMode %}
             MODIFICATION DE L'ANNONCE
@@ -14,6 +14,7 @@
     </h1><hr>
     {{ form_start(formAnnonce, { 'attr' : { 'class' : 'col-md-6 bg-secondary rounded p-3 text-white mb-5 mx-auto' }} ) }}
 
+
         {{ dump(userSS) }}
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : {'disabled': 'disabled') }} #}
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : { 'value': app.user.prenom, 'plceholder': app.user.prenom }}) }} #}
@@ -21,7 +22,10 @@
             <label for="user">Prenom</label>
             <input type='text' class="form-control" name="user" id="user">
         </div> #}
-        {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}
+        {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}                       
+        {{ form_row(formAnnonce.user, {'attr': {'placeholder': "nom etulisateur"}} ) }}                       
+        {# {{ form_row(formAnnonce.category) }}                                                             #}
+
         {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
         {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }}
         
@@ -34,5 +38,6 @@
         </button>                                                             
         
     {{ form_end(formAnnonce) }}
+</div>
 
 {% endblock %}

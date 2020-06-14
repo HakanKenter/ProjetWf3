@@ -43,6 +43,7 @@ class Annonce
      */
     private $user;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +109,7 @@ class Annonce
         return $this;
     }
 
+
     // public function __toString()
     // {
     //     return $this->title;
@@ -117,4 +119,10 @@ class Annonce
     // {
     //     return $this->user;
     // }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
 }
