@@ -22,7 +22,7 @@ class BlogController extends AbstractController
 {
     
      /**
-     * @Route("/blog/new", name="blog_create")
+     * @Route("/new", name="blog_create")
      * @Route("/blog/{id}/edit", name="blogEdit")
      */
     public function formulaire(Annonce $annonce = null, Request $request, EntityManagerInterface $manager)
@@ -51,16 +51,25 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('blog_show', ['id' => $annonce->getId()]);
         }
         // dump($annonce);
-        return $this->render('blog/depot_annonce.html.twig',[
+        return $this->render('blog/annonce.html.twig',[
             'formAnnonce' => $form->createView(),
             'editMode' => $annonce->getId()!== null
         ]);
+
+        
     }
 
-
-
+     /**
+     * @Route("/blog/{id}/delete", name="delete")
+     */
+    public function delete(Annonce $annonce)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($annonce);
+        $em->flush();
+        return $this->redirectToRoute('blog');
+    }
     
-
 
     /**
      * @Route("/blog/{id}", name="blog_show")
@@ -72,8 +81,9 @@ class BlogController extends AbstractController
          $annonce = $repo->find($id);
 
         // return $this->render('blog/show.html.twig');
-        return $this->render('blog/show.html.twig',['annonce'=> $annonce ]);
+        return $this->render('blog/show.html.twig',['annonce'=> $annonce]);
     }
+    
 
 
 
@@ -134,7 +144,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{id}", name="annonce_personnel")
+     * @Route("/blogg/{id}", name="annonce_personnel")
      */
     public function annoncePersonnel(User $user)
     {
