@@ -22,7 +22,7 @@ class BlogController extends AbstractController
 {
     
      /**
-     * @Route("/new", name="blog_create")
+     * @Route("blog/new", name="blog_create")
      * @Route("/blog/{id}/edit", name="blogEdit")
      */
     public function formulaire(Annonce $annonce = null, Request $request, EntityManagerInterface $manager)
@@ -102,7 +102,10 @@ class BlogController extends AbstractController
     }
     
 
-
+    /**
+     * @Route("/", name="blog")
+     * @Route("", name="blog")
+     */
     public function index()
     {                                  // LE REPOSITORIE(getRepository) PERMET DE SELECTIONNER DES DONNEES DANS LA TABLLE
          $repo = $this-> getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
