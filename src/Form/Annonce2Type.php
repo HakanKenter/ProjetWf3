@@ -25,9 +25,9 @@ class Annonce2Type extends AbstractType
             ->add('Prix')
             ->add('Image')
             // ->add('CreatedAt')
-            ->add('user', HiddenType::class, [
-                // 'value'   => $this->getUser(),
-            ])
+            // ->add('user', TextType::class, [
+            //     // 'value'   => $this->getUser(),
+            // ])
         ;
 
     }
