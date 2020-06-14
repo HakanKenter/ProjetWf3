@@ -6,9 +6,11 @@ use PDO;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -38,7 +40,10 @@ class IdentificationType extends AbstractType
             ])
             ->add('email')
             ->add('image')
-        ;
+            ->add('Roles', HiddenType::class);
+            // ->add('Roles', ChoiceType::class, ['choice_value' => ChoiceList::value($this, 'ROLE_USER'),
+            
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

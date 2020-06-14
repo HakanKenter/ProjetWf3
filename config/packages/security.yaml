@@ -41,5 +41,5 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login$, roles: ROLE_USER }
 
-    access_denied_url: /blog  
+    access_denied_url: /connexion
 

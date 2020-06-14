@@ -43,6 +43,11 @@ class Annonce
      */
     private $user;
 
+    // /**
+    //  * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
+    //  */
+    // private $category;
+
 
     public function getId(): ?int
     {
@@ -124,5 +129,17 @@ class Annonce
     {
         return $this->title;
     }
+
+    // public function getCategory(): ?Category
+    // {
+    //     return $this->category;
+    // }
+
+    // public function setCategory(?Category $category): self
+    // {
+    //     $this->category = $category;
+
+    //     return $this;
+    // }
 
 }
