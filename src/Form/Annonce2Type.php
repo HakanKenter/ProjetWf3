@@ -10,6 +10,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
+
+
+
 class Annonce2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -18,11 +24,12 @@ class Annonce2Type extends AbstractType
             ->add('title')
             ->add('Prix')
             ->add('Image')
-            ->add('user', TextType::class)
-            
-            ;
-        
-            
+            // ->add('CreatedAt')
+            ->add('user', HiddenType::class, [
+                // 'value'   => $this->getUser(),
+            ])
+        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

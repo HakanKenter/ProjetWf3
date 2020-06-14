@@ -114,6 +114,17 @@ class Annonce
         return $this;
     }
 
+
+    // public function __toString()
+    // {
+    //     return $this->title;
+    // }
+
+    // public function __toString()
+    // {
+    //     return $this->user;
+    // }
+
     public function __toString()
     {
         return $this->title;
@@ -130,4 +141,5 @@ class Annonce
 
         return $this;
     }
+
 }
