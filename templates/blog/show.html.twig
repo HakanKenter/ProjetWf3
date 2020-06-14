@@ -31,10 +31,20 @@
 						à
 						{{annonce.createdAt | date('H:i') }}
 						dans la categorie ####
-						{# <strong>{{annonce.category.title}}</strong></div> #}
-					<a href="{{ path('blog') }}" class="btn btn-primary">retouner dans la liste des annonces</a>
-					{# <a href="{{ path('blogEdit') }}" class="btn btn-primary">Pour modifier l'annonce clique ici</a> #}
-					{#<!-- <a href="{{ path('home') }}" class="btn btn-primary">retourner à l'acceuil</a> -->#}
+						{# <strong>{{annonce.category.title}}</strong>#}</div> 
+                        <div class="row">
+                            <div class="col-md-3"><a href="{{ path('blog') }}" class="btn btn-primary">acceuil</a></div>
+                            <div class="col-md-3"><a href="{{ path('blogEdit', {'id': annonce.id}) }}" class="btn btn-primary">Modifier</a> </div>
+                            <div class="col-md-3"><a href="{{ path('delete', {'id': annonce.id}) }}" class="btn btn-primary" onclick="return confirm('Attention ceci va supprimer l\'annonce')">Supprimer 
+                                
+                            </a> </div>
+                        </div>
+					
+				   
+                        
+                    
+				    
+					
 				</article>
 			</div>
 
@@ -75,7 +85,7 @@
                 </div>
 
                 <br>
-                
+{               
                 <div class="border border-secondary rounded d-flex justify-around">
                     <div class="col md-6 border border-secondary rounded d-flex align-items-center">
                         
@@ -121,8 +131,9 @@
                         </div>
                     </div>
                 		
-                </div>
-             
+                </div> 
+
+                
 			</div>
 		</div>
 
