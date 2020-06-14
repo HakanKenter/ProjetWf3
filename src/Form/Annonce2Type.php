@@ -2,14 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Annonce;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
@@ -24,9 +25,16 @@ class Annonce2Type extends AbstractType
             ->add('title')
             ->add('Prix')
             ->add('Image')
+            // ->add('user')
+            // ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'prenom'])   
             // ->add('CreatedAt')
+
             // ->add('user', TextType::class, [
             //     // 'value'   => $this->getUser(),
+
+            // ->add('user', ChoiceType::class, [
+            //     'choice_value' => ChoiceList::value($this, 'uuid'),
+
             // ])
         ;
 
