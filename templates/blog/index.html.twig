@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block body %} 
+
     
     
     <section class="annonces row d-flex justify-content-center">
         {% for annonce in annonces %}
-
             <article class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center">
                 <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr>
                 <h2>{{ annonce.title }}</h2>
