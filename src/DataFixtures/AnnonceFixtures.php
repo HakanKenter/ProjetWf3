@@ -30,6 +30,7 @@ class AnnonceFixtures extends Fixture
                  ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                 //  ->setTelephone($faker->imageUrl())
                  ->setImage($faker->imageUrl());
+
                  
             $manager->persist($user);
 
