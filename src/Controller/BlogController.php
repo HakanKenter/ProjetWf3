@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Entity\Annonce;
 use App\Form\AnnonceFormType;
 use App\Form\IdentificationType;
+use App\Form\Annonce2Type;
+
 // use App\Form\IdentificationType;
 use App\Form\DonneePersonnelType;
 use App\Repository\AnnonceRepository;
@@ -18,19 +20,77 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class BlogController extends AbstractController
 {
-    /**
-     * @Route("/blog", name="blog")
-     * @Route("", name="blog")
+    
+     /**
+     * @Route("/blog/new", name="blog_create")
+     * @Route("/blog/{id}/edit", name="blogEdit")
      */
-    public function index(AnnonceRepository $repo)
+    public function formulaire(Annonce $annonce = null, Request $request, EntityManagerInterface $manager)
     {
-        $annonce = $repo->findAll();
+        if(!$annonce)
+        {
+            $annonce = new Annonce();
+        }
+        
+        $form = $this->createForm(Annonce2Type::class, $annonce);
+                                                     
+        $form->handleRequest($request);
 
-        dump($annonce);
+        // dump($annonce);
+         
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$annonce->getId()) 
+            {
+                 $annonce->setCreatedAt(new \DateTime());
+            }
+           
+
+            $manager->persist($annonce);
+            $manager->flush();
+            return $this->redirectToRoute('blog_show', ['id' => $annonce->getId()]);
+        }
+        // dump($annonce);
+        return $this->render('blog/depot_annonce.html.twig',[
+            'formAnnonce' => $form->createView(),
+            'editMode' => $annonce->getId()!== null
+        ]);
+    }
+
+
+
+    
+
+
+    /**
+     * @Route("/blog/{id}", name="blog_show")
+     */
+    public function show($id) 
+    {
+        $repo = $this->getDoctrine()->getRepository(Annonce::class);
+
+         $annonce = $repo->find($id);
+
+        // return $this->render('blog/show.html.twig');
+        return $this->render('blog/show.html.twig',['annonce'=> $annonce ]);
+    }
+
+
+
+
+
+
+    /**
+     * @Route("/", name="blog")
+     */
+    public function index()
+    {                                  // LE REPOSITORIE(getRepository) PERMET DE SELECTIONNER DES DONNEES DANS LA TABLLE
+         $repo = $this-> getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
+
+        $annonces = $repo->findAll();  // la variable annonces est un array et on va le passer à twig
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
-            'annonce' => $annonce,
+            'annonces' => $annonces,
             'title' => "Bonjour et bienvenue sur notre site internet !"
         ]);
     }
