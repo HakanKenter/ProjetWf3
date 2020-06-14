@@ -11,6 +11,7 @@ use App\Form\Annonce2Type;
 // use App\Form\IdentificationType;
 use App\Form\DonneePersonnelType;
 use App\Repository\AnnonceRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +35,11 @@ class BlogController extends AbstractController
             $annonce = new Annonce();
         }
         // $user =  new User;
-        $userSS = $this->getUser()->getPrenom();
+        $id = $this->getUser()->getId();
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $userSS = $repo->find($id);
+
+        // $user->setPrenom($userSS);
         // $util= $annonce->setUser($userSS);
         // $form = $this->createFormBuilder($annonce)
         //              ->add('title')
@@ -53,7 +58,11 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$annonce->getId()) 
             {
+                $user = new User;
                 $annonce->setCreatedAt(new \DateTime());
+                $annonce->setUser($userSS);
+                // $post = $this->getDoctrine()->getRepository(UserRepository::class)->find($id);
+                // $this->$annonce->setUser(1);
             }
            
             $manager->persist($annonce);

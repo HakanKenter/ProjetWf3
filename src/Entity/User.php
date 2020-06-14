@@ -117,7 +117,7 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $Roles = [];
-
+ 
     // /**
     //  * @ORM\Column(type="string", length=255)
     //  */
@@ -345,8 +345,16 @@ class User implements UserInterface
         return $this->prenom;
     }
 
-    public function setRoles(array $Roles): self
+    // public function setRoles(array $Roles): self
+    // {
+    //     $this->Roles = $Roles;
+
+    //     return $this;
+    // }
+
+    public function setRoles($Roles)
     {
+        $Roles = ["ROLE_USER"];
         $this->Roles = $Roles;
 
         return $this;
