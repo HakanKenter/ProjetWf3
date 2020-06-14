@@ -22,11 +22,12 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
-                    </li>
+                    
                     {% if not app.user %}
                     
+                        <li class="nav-item active">
+                            <a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ path('registration') }}">Inscritpion</a>
                         </li>
@@ -37,7 +38,9 @@
                     {% endif %} 
 
                     {% if app.user %}
-
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('blog_create') }}">Déposer une annonce</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compte</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">

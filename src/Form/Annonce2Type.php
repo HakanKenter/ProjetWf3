@@ -6,6 +6,11 @@ use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
+
 
 class Annonce2Type extends AbstractType
 {
@@ -15,8 +20,10 @@ class Annonce2Type extends AbstractType
             ->add('title')
             ->add('Prix')
             ->add('Image')
-            ->add('CreatedAt')
-            ->add('user')
+            // ->add('CreatedAt')
+            ->add('user', HiddenType::class, [
+                // 'value'   => $this->getUser(),
+            ])
         ;
     }
 

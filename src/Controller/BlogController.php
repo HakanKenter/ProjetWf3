@@ -27,43 +27,48 @@ class BlogController extends AbstractController
      */
     public function formulaire(Annonce $annonce = null, Request $request, EntityManagerInterface $manager)
     {
+        // $user = new User;
+        
         if(!$annonce)
         {
             $annonce = new Annonce();
         }
+        // $user =  new User;
+        $userSS = $this->getUser()->getPrenom();
+        // $util= $annonce->setUser($userSS);
+        // $form = $this->createFormBuilder($annonce)
+        //              ->add('title')
+        //              ->add('Prix')
+        //              ->add('Image')
+        //              ->add('user')
+        //              ->getForm();
+
         
         $form = $this->createForm(Annonce2Type::class, $annonce);
                                                      
         $form->handleRequest($request);
 
-        // dump($annonce);
-         
+        // dump($annonce); 
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$annonce->getId()) 
             {
-                 $annonce->setCreatedAt(new \DateTime());
+                $annonce->setCreatedAt(new \DateTime());
             }
            
-
             $manager->persist($annonce);
             $manager->flush();
             return $this->redirectToRoute('blog_show', ['id' => $annonce->getId()]);
         }
-        // dump($annonce);
         return $this->render('blog/depot_annonce.html.twig',[
             'formAnnonce' => $form->createView(),
-            'editMode' => $annonce->getId()!== null
+            'editMode' => $annonce->getId()!== null,
+            'userSS' => $userSS
         ]);
     }
 
-
-
-    
-
-
     /**
-     * @Route("/blog/{id}", name="blog_show")
+     * @Route("/blog/{id}/show", name="blog_show")
      */
     public function show($id) 
     {
@@ -74,11 +79,6 @@ class BlogController extends AbstractController
         // return $this->render('blog/show.html.twig');
         return $this->render('blog/show.html.twig',['annonce'=> $annonce ]);
     }
-
-
-
-
-
 
     /**
      * @Route("/", name="blog")
@@ -134,7 +134,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{id}", name="annonce_personnel")
+     * @Route("/blog/{id}/perso", name="annonce_personnel")
      */
     public function annoncePersonnel(User $user)
     {
