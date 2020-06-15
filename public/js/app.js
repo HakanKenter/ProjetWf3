@@ -43,6 +43,7 @@ if(blockDeposerAnnonce){
 
 // __________________________________________________________________________________________________________________________________________________________________________
 
+
 // Animation "Bienvenue"
 
 var textWrapper = document.querySelector('.ml2');
@@ -64,3 +65,11 @@ anime.timeline({loop: true})
     easing: "easeOutExpo",
     delay: 1000000000000000
   });
+
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
