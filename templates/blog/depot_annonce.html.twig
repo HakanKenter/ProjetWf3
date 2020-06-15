@@ -16,6 +16,7 @@
 
 
         {# {{ dump(userSS) }} #}
+
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : {'disabled': 'disabled') }} #}
         {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : { 'value': app.user.id}}) }} #}
         {# <div class="form-group">
@@ -28,7 +29,10 @@
         {{ form_row(formAnnonce.category, {'label' : 'Catégorie'}, {'attr': {'placeholder': "Choississez votre catégories"}} ) }}    
 
         {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
-        {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }}
+
+        {{ form_row(formAnnonce.imageFile) }}
+
+       {#  {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }}#}
         {{ form_row(formAnnonce.description, {'attr': {'placeholder': "Ajoutez une description"}} ) }}                              
 
          
@@ -48,6 +52,7 @@
         </button>                                                             
         
     {{ form_end(formAnnonce) }}
+    {{ dump(formAnnonce) }}
 </div>
 
 {% endblock %}

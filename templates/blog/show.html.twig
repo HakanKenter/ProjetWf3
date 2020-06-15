@@ -1,26 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
+{# bbb #}
 
 	<div class="row text-center">
-		{# <div class="col-md-2 ">
-			titre</div>
-		<div class="col-md-3">deposer une annonce</div>
-		<div class="col-md-3">Mes recherches</div>
-		<div class="col-md-2">Favori</div>
-		<div class="col-md-2">compte</div>
-	</div> #}
-
-    
 	<div class="container d-flex justify-around mt-5 mb-5">
-    <br>
-    <br>
+        <br>
+        <br>
 
 		<div class="col-md-8">
 			<div class="image">
 				<article>
-					<img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr>
+                    <img class="card-img-top" src="{{ asset('images/produits/' ~ annonce.image ) }}" alt="Card image cap">
+					{# <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr> #}
 					<h2>{{ annonce.title }}</h2>
 
 					<p>
@@ -30,6 +22,14 @@
 						{{annonce.createdAt | date('d/m/y') }}
 						à
 						{{annonce.createdAt | date('H:i') }}
+
+						dans la categorie ####
+						{# <strong>{{annonce.category.title}}</strong>#}
+            </div> 
+                        <div class="row">
+                            <div class="col-md-3"><a href="{{ path('blog') }}" class="btn btn-primary">acceuil</a></div>
+                        </div>
+
 
                         dans la categorie : <span class="font-weight-bold" >{{ annonce.category.nom}}</span>
                     </div><hr>
@@ -47,20 +47,20 @@
 
 				</article>
 			</div>
-
+            {# ################################################################################################################################# #}
 		</div>
 		<div class="col-md-4 border border-secondary rounded">
-			<div class="container ">
+			<div class="row ">
                 <div class="containet border border-secondary rounded d-flex justify-around">
                     <div class="col-md-5">
                         <div class="row">
                             <h4 class="text-center">Auteur</h4>
                         </div>
                         <div class="row">
-                            <img src="https://i.ytimg.com/vi/fDm8JdCAPeM/maxresdefault.jpg" alt="avatar" class="img-thumbnail rounded-circle">
+                            <img src={{user.image}} alt="avatar" class="img-thumbnail rounded-circle">
                         </div>
                         <div class="row">	
-                                <a href="#" class="text-center">PAGE PERSONNEL</a>
+                                <a href="{{ path('annonce_personnel', {'id':user.id}) }}" class="text-center">PAGE PERSONNEL</a>
                         </div>
 
                     </div>
@@ -71,70 +71,39 @@
                             <h3 class="text-center">Contact</h3>
                         </div>
                         <div class="row">
-                            <h5>Email: xxxxxx</h5>
+                            <h5>Email: {{user.email}} </h5>
                         </div>
                         <div class="row">
                             <h5>Tèl: xxxxxxx</h5>
                         </div>
                         <div class="row">
-                            <h5>Ville : xxxxxxxxxxxxxx</h5>
-                            <h5>Code postale : xxxxxxxxxxx</h5>
+                            <h5>Ville : {{user.ville}}</h5>
+                            <h5>Adresse: {{user.adresse}}</h5>
                         </div>
                     
                     </div>
                 </div>
-
+            </div>
                 <br>
-{               
-                <div class="border border-secondary rounded d-flex justify-around">
-                    <div class="col md-6 border border-secondary rounded d-flex align-items-center">
-                        
-								<img src="https://i.ytimg.com/vi/fDm8JdCAPeM/maxresdefault.jpg" class="img-fluid heigth: 100% width: 100%" alt="">
-					
-                    </div>
-                    <div class="col md-6 border border-secondary rounded">
+            <div class="row">
+                <div class="col-md-12 border border-secondary rounded d-flex justify-around">
+                    <section>
+                        {% for annoncePersonnel in user.annonce %}
                         <div class="row">
-                            <h5>Titre : {{ annonce.title }}</h5>
+                            <img class="card-img-top" src="{{ asset('images/produits/' ~ annoncePersonnel.image ) }}" alt="Card image cap">
+                            {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({"640/480": "320/140"}) }}"> #}
+                            <strong class="text-center mx-auto">{{ annoncePersonnel.title }}</strong> 
                         </div>
-                        <div class="row">
-                            <h5>Ville : xxxxxxxxxxx</h5>
-                            <h5>Code postale : xxxxxx</h5>
-                        </div>
-                        <div class="row">
-                            <h5>Prix : {{ annonce.prix }}$</h5>
-                        </div>
-                        <div class="row">
-                            <p class="text-right">Ajouté le {{annonce.createdAt | date('d/m/y') }}</p>
-                        </div>
-                    </div>
-                		
+                        <br>
+                             <a href="{{ path('blog_show', {'id':annoncePersonnel.id}) }}" class="btn btn-primary">Voir plus</a>
+                        <br>
+                    {% endfor %}
+
+                    </section>
                 </div>
-
-                <br>
-
-                <div class="border border-secondary rounded d-flex justify-around">
-                    <div class="col md-6 border border-secondary rounded d-flex align-items-center">                       
-						<img src="https://i.ytimg.com/vi/fDm8JdCAPeM/maxresdefault.jpg" class="img-fluid heigth: 100% width: 100%" alt="">					
-                    </div>
-                    <div class="col md-6 border border-secondary rounded">
-                        <div class="row">
-                            <h5>Titre</h5>
-                        </div>
-                        <div class="row">
-                            <h5>Code postale, Ville</h5>
-                        </div>
-                        <div class="row">
-                            <h5>Prix</h5>
-                        </div>
-                        <div class="row">
-                            <p class="text-right">Ajouté le 11/06/20 à 12:22</p>
-                        </div>
-                    </div>
-                		
-                </div> 
-
+            </div>
                 
-			</div>
+			
 		</div>
 
 	</div>
