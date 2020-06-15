@@ -89,3 +89,33 @@ li {
 #divInfoPersoOn {
     background-color: rgb(86, 87, 88);
 }
+
+.ml2 {
+    font-weight: 900;
+    font-size: 3.5em;
+  }
+  
+  .ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }
+
+/* iPad Pro */
+@media screen and (min-width: 1000px) and (max-width: 1100px){
+    #sur-carousel{
+        padding-bottom: 15vh;
+    }
+    .bienvenue{
+        font-size: 2em;
+    }
+}
+
+/* iPad */
+@media screen and (min-width: 750px) and (max-width: 1000px){
+    #sur-carousel{
+        padding-bottom: 28vh;
+    }
+    .bienvenue{
+        font-size: 2em;
+    }
+}

@@ -4,7 +4,7 @@
 
 {% block Bienvenue %}
 
-    <h1 id="titre-accueil" class='display-4 text-white mb-5'>{{ title }}</h1>
+    <h1 id="titre-accueil" class='mx-auto text-white mb-5 text-center bienvenue ml2 d-none d-sm-block'>{{ title }}</h1>
                         
 {% endblock %}
 
@@ -12,9 +12,9 @@
 
     
     
-    <section class="annonces row d-flex justify-content-center">
+    <section class="annonces row d-flex justify-content-center pt-5 pt-sm-0">
         {% for annonce in annonces %}
-            <article class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center">
+            <article class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 ml-5 pl-2 pr-2 text-center text-justify">
                 <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr>
                 <h2>{{ annonce.title }}</h2>
                 <p> Prix : {{ annonce.prix }}</p><hr>
