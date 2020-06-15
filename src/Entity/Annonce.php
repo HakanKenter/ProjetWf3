@@ -56,8 +56,17 @@ class Annonce
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+  
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
-
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
 
     public function getId(): ?int
     {
@@ -155,8 +164,7 @@ class Annonce
     {
         return $this->title;
     }
-
-    
+  
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
@@ -165,6 +173,28 @@ class Annonce
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+    }
+  
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

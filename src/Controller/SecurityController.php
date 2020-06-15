@@ -36,6 +36,7 @@ class SecurityController extends AbstractController
         dump($request);
 
         $form->handleRequest($request);
+        $user->setRoles(['ROLE_USER']);
 
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -75,9 +76,10 @@ class SecurityController extends AbstractController
 
         $form = $this->createForm(IdentificationType::class, $user); 
 
+        $user->setRoles(['ROLE_USER']);
         $form->handleRequest($request);
 
-        $error = $authenticationUtils->getLastAuthenticationError();
+        // $error = $authenticationUtils->getLastAuthenticationError();
 
 
         if($form->isSubmitted() && $form->isValid())

@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Annonce;
-use App\Form\AnnonceFormType;
-use App\Form\IdentificationType;
+use App\Entity\Category;
 use App\Form\Annonce2Type;
+use App\Form\AnnonceFormType;
 
 // use App\Form\IdentificationType;
+use App\Form\IdentificationType;
 use App\Form\DonneePersonnelType;
-use App\Repository\AnnonceRepository;
 use App\Repository\UserRepository;
+use App\Form\SelectionCategoryType;
+use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -119,26 +122,29 @@ class BlogController extends AbstractController
      * @Route("/", name="blog")
      * @Route("", name="blog")
      */
-    public function index()
-    {                                  // LE REPOSITORIE(getRepository) PERMET DE SELECTIONNER DES DONNEES DANS LA TABLLE
-         $repo = $this-> getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
+    public function index(Request $request)
+    {                      
+        $annonce = new Annonce;
 
+        $form = $this->createForm(SelectionCategoryType::class, $annonce);
+        $form->handleRequest($request);
+        $categories = [ 'id' => null ];
+        $repo = $this-> getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
         $annonces = $repo->findAll();  // la variable annonces est un array et on va le passer à twig
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $categories = $annonce->getCategory();
+        }
+ 
         return $this->render('blog/index.html.twig', [
+            'formCategory' => $form->createView(),
             'controller_name' => 'BlogController',
             'annonces' => $annonces,
+            'categories' => $categories,
             'title' => "Bonjour et bienvenue sur notre site internet !"
         ]);
-    }
 
-    // /**
-    //  * @Route("/", name="home")
-    //  */
-    public function home()
-    {
-        return $this->render('blog/home.html.twig', [
-            'title' => "Bonjour et bienvenue sur notre site internet !"
-        ]);
     }
 
     /**

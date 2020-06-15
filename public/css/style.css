@@ -1,15 +1,35 @@
-.contenu-base{
-    /* height: 50vh; */
-    /* background-color: blueviolet; */
-    /* height: 95vh;
-    position: relative; */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
+* {
+    font-family: 'Oxygen', sans-serif;
+}
+
+
+/* .contenu-base { */
+
+
+/* height: 50vh; */
+
+
+/* background-color: blueviolet; */
+
+
+/* height: 95vh;
+    position: relative; */
+
+
+/* } */
+
 
 /* .navbar{
     position: fixed;
 } */
 
-#sur-carousel{
+#sur-carousel {
     position: absolute;
     z-index: 2;
     height: 600px;
@@ -20,21 +40,21 @@
     align-items: center;
 }
 
-.pos{
+.pos {
     position: relative;
 }
 
-#carouselExampleControls{
+#carouselExampleControls {
     /* position: absolute; */
     z-index: 1;
     /* opacity: 0.3; */
 }
 
-#cadre-recherche{
+#cadre-recherche {
     background-color: rgb(226, 98, 38);
 }
 
-#desposer-annonce{
+#desposer-annonce {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -44,7 +64,58 @@
     display: none;
 }
 
-.deposer-annonce-titre{
+.deposer-annonce-titre {
     color: rgb(226, 98, 38);
     background-color: rgb(43, 43, 43);
+}
+
+footer {
+    background-color: #D1A97A
+}
+
+#colorPerso {
+    background-color: #D1A97A
+}
+
+li {
+    list-style: none;
+    text-decoration-style: none;
+}
+
+#divInfoPersoOff {
+    background-color: rgb(174, 177, 180);
+}
+
+#divInfoPersoOn {
+    background-color: rgb(86, 87, 88);
+}
+
+.ml2 {
+    font-weight: 900;
+    font-size: 3.5em;
+  }
+  
+  .ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }
+
+/* iPad Pro */
+@media screen and (min-width: 1000px) and (max-width: 1100px){
+    #sur-carousel{
+        padding-bottom: 15vh;
+    }
+    .bienvenue{
+        font-size: 2em;
+    }
+}
+
+/* iPad */
+@media screen and (min-width: 750px) and (max-width: 1000px){
+    #sur-carousel{
+        padding-bottom: 28vh;
+    }
+    .bienvenue{
+        font-size: 2em;
+    }
 }
