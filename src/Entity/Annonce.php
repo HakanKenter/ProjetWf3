@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
+ * @Vich\Uploadable
  */
 class Annonce
 {
@@ -43,6 +47,16 @@ class Annonce
      */
     private $user;
 
+     /**
+     * @Vich\UploadableField(mapping="produits_image", fileNameProperty="Image")
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+  
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
      * @ORM\JoinColumn(nullable=false)
@@ -53,7 +67,6 @@ class Annonce
      * @ORM\Column(type="text")
      */
     private $description;
-
 
     public function getId(): ?int
     {
@@ -89,7 +102,7 @@ class Annonce
         return $this->Image;
     }
 
-    public function setImage(string $Image): self
+    public function setImage(?string $Image): self
     {
         $this->Image = $Image;
 
@@ -120,6 +133,22 @@ class Annonce
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+        
+        if($this->imageFile instanceof UploadedFile){
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
 
     // public function __toString()
     // {
@@ -135,7 +164,17 @@ class Annonce
     {
         return $this->title;
     }
+  
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
 
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+    }
+  
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -159,5 +198,6 @@ class Annonce
 
         return $this;
     }
+
 
 }

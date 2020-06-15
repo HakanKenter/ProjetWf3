@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 
@@ -24,12 +25,18 @@ class Annonce2Type extends AbstractType
         $builder
             ->add('title')
             ->add('Prix')
-            ->add('Image')
+
+            // ->add('Image', FileType::class,[
+            //     'label' => false, 
+            // ])
+            ->add('imageFile', FileType::class,['required' => false])
+            //->add('Image')
             ->add('description')
             ->add('category')
 
             // ->add('user')
             // ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'prenom'])   
+
             // ->add('CreatedAt')
 
             // ->add('user', TextType::class, [
