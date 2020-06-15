@@ -28,9 +28,9 @@
     <section class="annonces row d-flex justify-content-center">
         {% for annonce in annonces %}
             {% if annonce.category.id == categories.id %}
-                <article class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center">
+                <article class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center p-2">
                     <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr>
-                    <h2>{{ annonce.title }}</h2>
+                    <h5>{{ annonce.title|slice(3, 25)|raw }}</h5>
                     <p> Prix : <span class="font-weight-bold" >{{ annonce.prix }}</span></p><hr>
                     <p> Catégorie : <span class="font-weight-bold" >{{ annonce.category.nom }}</span></p><hr>
                     <div class="metadata text-right m-3">Posté le {{annonce.createdAt | date('d/m/y') }} à {{annonce.createdAt | date('H:i') }}</div> 

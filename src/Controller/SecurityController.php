@@ -101,7 +101,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/information_personnel.html.twig',[
-            'formDonnee' => $form->createView(),
+            'formDonneePersonnel' => $form->createView(),
             'editMode' => $user->getId()!== null
         ]);
     }
