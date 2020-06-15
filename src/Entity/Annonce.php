@@ -43,10 +43,16 @@ class Annonce
      */
     private $user;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
-    //  */
-    // private $category;
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
 
 
     public function getId(): ?int
@@ -130,16 +136,28 @@ class Annonce
         return $this->title;
     }
 
-    // public function getCategory(): ?Category
-    // {
-    //     return $this->category;
-    // }
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
 
-    // public function setCategory(?Category $category): self
-    // {
-    //     $this->category = $category;
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
-    //     return $this;
-    // }
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 
 }

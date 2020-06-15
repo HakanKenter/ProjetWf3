@@ -36,6 +36,7 @@ class SecurityController extends AbstractController
         dump($request);
 
         $form->handleRequest($request);
+        $user->setRoles(['ROLE_USER']);
 
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -77,7 +78,7 @@ class SecurityController extends AbstractController
 
         $form->handleRequest($request);
 
-        $error = $authenticationUtils->getLastAuthenticationError();
+        // $error = $authenticationUtils->getLastAuthenticationError();
 
 
         if($form->isSubmitted() && $form->isValid())
@@ -100,7 +101,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/information_personnel.html.twig',[
-            'formDonneePersonnel' => $form->createView(),
+            'formDonnee' => $form->createView(),
             'editMode' => $user->getId()!== null
         ]);
     }

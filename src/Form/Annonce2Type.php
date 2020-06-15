@@ -25,6 +25,9 @@ class Annonce2Type extends AbstractType
             ->add('title')
             ->add('Prix')
             ->add('Image')
+            ->add('description')
+            ->add('category')
+
             // ->add('user')
             // ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'prenom'])   
             // ->add('CreatedAt')

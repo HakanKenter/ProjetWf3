@@ -17,6 +17,7 @@
         </div>
 
         <div class="col-md-6 border-left">
+
             <div id="colorPerso" class="col-md-12 d-flex rounded border border-secondary">
 
                 {# <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white"> #}
@@ -34,12 +35,12 @@
                     {{ form_row(formDonneePersonnel.civilite) }}
                     {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance"}) }} 
 
+
                     <div class="col-md-12 d-flex justify-content-end">
                         <button class="btn btn-dark" type="submit">Modifier</button>
                     </div> 
 
-                    {{ form_end(formDonneePersonnel) }}
-                {# </div> #}
+                    {{ form_end(formDonnee) }}
             </div>
         </div> 
     </div>
