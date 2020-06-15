@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Annonce;
+use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -45,6 +46,16 @@ class AnnonceFixtures extends Fixture
                         ->setUser($user);
                 
                 $manager->persist($annonce);
+
+                for($k = 1; $k <= 1; $k++)
+                {
+                    $category = new Category;
+
+                    $category->setNom($faker->firstname());
+
+                    $manager->persist($category);
+                    
+                }
             }
         }
 

@@ -2,33 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\User;
 use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
-
-
-
-class Annonce2Type extends AbstractType
+class SelectionCategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('Prix')
-            ->add('Image')
-            ->add('description')
+            ->add('title', HiddenType::class)
+            ->add('Prix', HiddenType::class)
+            ->add('Image', HiddenType::class)
+            ->add('CreatedAt', HiddenType::class)
+            ->add('description', HiddenType::class)
+            ->add('user', HiddenType::class)
             ->add('category')
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

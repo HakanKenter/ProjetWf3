@@ -18,28 +18,25 @@
 
         <div class="col-md-6 border-left">
             <div class="col-md-12 d-flex mt-5 pt-5">
+                    {{ form_start(formDonnee, { 'attr' : { 'class' : 'col-md-12 bg-secondary rounded p-3 text-white mb-5 ' }}) }}
 
-                {# <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white"> #}
-                    {{ form_start(formDonneePersonnel, { 'attr' : { 'class' : 'col-md-12 bg-secondary rounded p-3 text-white mb-5 ' }}) }}
-
-                    {{ form_row(formDonneePersonnel.image, { 'label' : "Photo de profil"}) }}
-                    {{ form_row(formDonneePersonnel.prenom) }}
-                    {{ form_row(formDonneePersonnel.nom) }}
-                    {{ form_row(formDonneePersonnel.email) }}
-                    {{ form_row(formDonneePersonnel.ville) }}
-                    {{ form_row(formDonneePersonnel.password, { 'label' : "Mot de passe"}) }}
-                    {{ form_row(formDonneePersonnel.confirm_password, { 'label' : "Confirmez votre mot de passe"}) }}
-                    {{ form_row(formDonneePersonnel.adresse) }}
-                    {{ form_row(formDonneePersonnel.pseudo) }}
-                    {{ form_row(formDonneePersonnel.civilite) }}
-                    {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance"}) }} 
+                    {{ form_row(formDonnee.image, { 'label' : "Photo de profil"}) }}
+                    {{ form_row(formDonnee.prenom) }}
+                    {{ form_row(formDonnee.nom) }}
+                    {{ form_row(formDonnee.email) }}
+                    {{ form_row(formDonnee.ville) }}
+                    {{ form_row(formDonnee.password, { 'label' : "Mot de passe"}) }}
+                    {{ form_row(formDonnee.confirm_password, { 'label' : "Confirmez votre mot de passe"}) }}
+                    {{ form_row(formDonnee.adresse) }}
+                    {{ form_row(formDonnee.pseudo) }}
+                    {{ form_row(formDonnee.civilite) }}
+                    {{ form_row(formDonnee.birth, { 'label' : "Date de naissance"}) }}
 
                     <div class="col-md-12 d-flex justify-content-end">
                         <button class="btn btn-dark" type="submit">Modifier</button>
                     </div> 
 
-                    {{ form_end(formDonneePersonnel) }}
-                {# </div> #}
+                    {{ form_end(formDonnee) }}
             </div>
         </div> 
     </div>

@@ -335,16 +335,12 @@ class User implements UserInterface
     //     return $this;
     // }
 
-    // public function __toString()
-    // {
-    //     return $this->telephone;
-    // }
-
     public function __toString()
     {
         return $this->prenom;
     }
 
+    
     // public function setRoles(array $Roles): self
     // {
     //     $this->Roles = $Roles;
@@ -354,7 +350,7 @@ class User implements UserInterface
 
     public function setRoles($Roles)
     {
-        $Roles = ["ROLE_USER"];
+        // $Roles = ["ROLE_USER"];
         $this->Roles = $Roles;
 
         return $this;
