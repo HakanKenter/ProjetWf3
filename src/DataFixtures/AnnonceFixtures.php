@@ -43,6 +43,7 @@ class AnnonceFixtures extends Fixture
                         ->setPrix(mt_rand(1,500))
                         ->setImage($faker->imageUrl())
                         ->setCreatedAt($faker->dateTimeBetween('-6 months'))
+                        ->setDescription($faker->sentence())
                         ->setUser($user);
                 
                 $manager->persist($annonce);
@@ -51,7 +52,8 @@ class AnnonceFixtures extends Fixture
                 {
                     $category = new Category;
 
-                    $category->setNom($faker->firstname());
+                    $category->setNom($faker->firstname())
+                             ->addAnnonce($annonce);
 
                     $manager->persist($category);
                     

@@ -10,7 +10,7 @@
             <div id="colorPerso" class=" col-md-12  mx-auto rounded d-flex flex-column justify-content-center text-white text-center p-3 border border-secondary">
                 <img class="mt-4 mx-1 rounded border-top border-dark " src="{{ app.user.image|replace({"640/480": "350/210"}) }}"><hr>
                 <p id="divInfoPersoOff" class="p-2 rounded  border-top border-dark ">{{ app.user.pseudo }}</p>
-                <p id="divInfoPersoOff" class="p-2 rounded border-top border-dark ">{{ app.user.email|raw }}</p>
+                <p id="divInfoPersoOff" class="p-2 rounded border-top border-dark "><i class="far fa-envelope mr-2"></i>{{ app.user.email|raw }}</p>
                 <a id="divInfoPersoOn" class="p-2 rounded  text-white text-decoration-none border-top border-dark " href="{{ path('annonce_personnel', {'id': app.user.id}) }}">Ma page personnel</a>
                 {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
             </div>
@@ -34,6 +34,7 @@
                     {{ form_row(formDonneePersonnel.pseudo) }}
                     {{ form_row(formDonneePersonnel.civilite) }}
                     {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance"}) }} 
+                    {{ form_row(formDonneePersonnel.telephone, { 'label' : "Téléphone"}) }} 
 
 
                     <div class="col-md-12 d-flex justify-content-end">

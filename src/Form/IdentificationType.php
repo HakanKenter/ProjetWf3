@@ -39,12 +39,9 @@ class IdentificationType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('email')
-
-            ->add('image');
-            //->add('Roles', HiddenType::class);
-            // ->add('Roles', ChoiceType::class, ['choice_value' => ChoiceList::value($this, 'ROLE_USER'),
+            ->add('image')
+            ->add('telephone');
             
-            // ]);
 
     }
 
