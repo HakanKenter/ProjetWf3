@@ -30,6 +30,7 @@
 						{{annonce.createdAt | date('d/m/y') }}
 						à
 						{{annonce.createdAt | date('H:i') }}
+
                         dans la categorie : <span class="font-weight-bold" >{{ annonce.category.nom}}</span>
                     </div><hr>
                     <div class="col-md-12 text-left">
@@ -43,12 +44,7 @@
                         <div class="col-md-3"><a href="{{ path('delete', {'id': annonce.id}) }}" class="btn btn-primary" onclick="return confirm('Attention ceci va supprimer l\'annonce')">Supprimer 
                         </a> </div>
                     </div>
-					
-				   
-                        
-                    
-				    
-					
+
 				</article>
 			</div>
 

@@ -27,6 +27,18 @@ class Annonce2Type extends AbstractType
             ->add('Image')
             ->add('description')
             ->add('category')
+
+            // ->add('user')
+            // ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'prenom'])   
+            // ->add('CreatedAt')
+
+            // ->add('user', TextType::class, [
+            //     // 'value'   => $this->getUser(),
+
+            // ->add('user', ChoiceType::class, [
+            //     'choice_value' => ChoiceList::value($this, 'uuid'),
+
+            // ])
         ;
 
     }
