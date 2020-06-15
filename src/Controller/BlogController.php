@@ -57,7 +57,7 @@ class BlogController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$annonce->getId()) 
-            {
+            {   
                 $user = new User;
                 $annonce->setCreatedAt(new \DateTime());
                 $annonce->setUser($userSS);
@@ -94,20 +94,24 @@ class BlogController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('blog');
     }
-    
+
 
 
     /**
      * @Route("/blog/{id}/show", name="blog_show")
      */
-    public function show($id) 
+    public function show($id)
     {
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
+        $annonce = $repo->find($id);
+        $id_user = $repo->find($id)->getUser();
 
-         $annonce = $repo->find($id);
+        $reponse = $this->getDoctrine()->getRepository(User::class);
+        $user = $reponse->find($id_user);
+        dump($user);
 
         // return $this->render('blog/show.html.twig');
-        return $this->render('blog/show.html.twig',['annonce'=> $annonce]);
+        return $this->render('blog/show.html.twig', ['annonce' => $annonce, 'user' => $user]);
     }
     
 

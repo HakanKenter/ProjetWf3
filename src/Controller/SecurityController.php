@@ -76,6 +76,7 @@ class SecurityController extends AbstractController
         $form = $this->createForm(IdentificationType::class, $user); 
 
         $form->handleRequest($request);
+        $user->setRoles(['ROLE_USER']);
 
         $error = $authenticationUtils->getLastAuthenticationError();
 

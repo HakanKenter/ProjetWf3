@@ -40,10 +40,7 @@ class IdentificationType extends AbstractType
             ])
             ->add('email')
             ->add('image')
-            ->add('Roles', HiddenType::class);
-            // ->add('Roles', ChoiceType::class, ['choice_value' => ChoiceList::value($this, 'ROLE_USER'),
-            
-            // ]);
+        ;    
     }
 
     public function configureOptions(OptionsResolver $resolver)

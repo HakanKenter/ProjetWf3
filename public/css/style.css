@@ -82,10 +82,37 @@ li {
     text-decoration-style: none;
 }
 
+#colorBtnInput {
+    background-color: #D1A97A
+}
+
+#colorBtnInput:hover {
+    background-color: rgb(141, 114, 84);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 #divInfoPersoOff {
     background-color: rgb(174, 177, 180);
 }
 
 #divInfoPersoOn {
     background-color: rgb(86, 87, 88);
+}
+
+#divInfoPersoOn:hover {
+    background-color: rgb(47, 47, 48);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footer {
+    padding-bottom: 0;
+}
+
+img {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.btnDown {
+    padding-bottom: 0;
 }
