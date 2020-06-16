@@ -9,10 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @Vich\Uploadable
  * @UniqueEntity(
  *  fields={"email"},
  *  message="Cette Email est déjà utilisée !",
@@ -114,9 +119,20 @@ class User implements UserInterface
     private $image;
 
     /**
+     * @Vich\UploadableField(mapping="produits_image", fileNameProperty="image")
+     */
+    
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $Roles = [];
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
  
     // /**
     //  * @ORM\Column(type="string", length=255)
@@ -316,10 +332,27 @@ class User implements UserInterface
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
+        return $this;
+    }
+
+    
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+        
+        if($this->imageFile instanceof UploadedFile){
+            $this->updated_at = new \DateTime('now');
+        }
         return $this;
     }
 
@@ -352,6 +385,18 @@ class User implements UserInterface
     {
         // $Roles = ["ROLE_USER"];
         $this->Roles = $Roles;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

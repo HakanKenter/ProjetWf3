@@ -26,26 +26,12 @@ class Annonce2Type extends AbstractType
             ->add('title')
             ->add('Prix')
 
-            // ->add('Image', FileType::class,[
-            //     'label' => false, 
-            // ])
             ->add('imageFile', FileType::class,['required' => false])
-            //->add('Image')
+            
             ->add('description')
             ->add('category')
 
-            // ->add('user')
-            // ->add('user', EntityType::class, ['class' => User::class, 'choice_label' => 'prenom'])   
-
-            // ->add('CreatedAt')
-
-            // ->add('user', TextType::class, [
-            //     // 'value'   => $this->getUser(),
-
-            // ->add('user', ChoiceType::class, [
-            //     'choice_value' => ChoiceList::value($this, 'uuid'),
-
-            // ])
+            
         ;
 
     }
