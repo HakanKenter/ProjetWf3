@@ -25,15 +25,10 @@ class Annonce2Type extends AbstractType
         $builder
             ->add('title')
             ->add('Prix')
-
-            ->add('imageFile', FileType::class,['required' => false])
-            
+            ->add('imageFile', FileType::class,['required' => True])
             ->add('description')
             ->add('category')
-
-            
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -5,6 +5,7 @@ easy_admin:
       - label: 'Blog'
         icon: 'folder-plus'
         children:
+          - { entity: 'Category', icon: 'folder-open', label: 'Categories'}
           - { entity: 'Annonce', icon: 'folder-open', label: 'Annonce'}
 
       - label: 'Accès'

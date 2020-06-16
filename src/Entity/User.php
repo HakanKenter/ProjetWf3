@@ -329,11 +329,6 @@ class User implements UserInterface
         return $this;
     }
 
-    // public function __toString()
-    // {
-    //     return $this->birth;
-    // }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -345,7 +340,6 @@ class User implements UserInterface
 
         return $this;
     }
-
     
     public function getImageFile(): ?File
     {
@@ -363,30 +357,10 @@ class User implements UserInterface
         return $this;
     }
 
-    // public function getTelephone(): ?string
-    // {
-    //     return $this->telephone;
-    // }
-
-    // public function setTelephone(string $telephone): self
-    // {
-    //     $this->telephone = $telephone;
-
-    //     return $this;
-    // }
-
     public function __toString()
     {
         return $this->prenom;
     }
-
-    
-    // public function setRoles(array $Roles): self
-    // {
-    //     $this->Roles = $Roles;
-
-    //     return $this;
-    // }
 
     public function setRoles($Roles)
     {

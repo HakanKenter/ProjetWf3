@@ -149,17 +149,6 @@ class Annonce
         return $this;
     }
 
-
-    // public function __toString()
-    // {
-    //     return $this->title;
-    // }
-
-    // public function __toString()
-    // {
-    //     return $this->user;
-    // }
-
     public function __toString()
     {
         return $this->title;
@@ -170,7 +159,7 @@ class Annonce
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at)
     {
         $this->updated_at = $updated_at;
     }
