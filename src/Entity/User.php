@@ -133,6 +133,13 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 10, max = 10, minMessage = "min_lenght", maxMessage = "max_lenght")
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="number_only") 
+     */
+    private $telephone;
+
  
     // /**
     //  * @ORM\Column(type="string", length=255)
@@ -389,6 +396,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
@@ -397,6 +405,16 @@ class User implements UserInterface
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
+
 
         return $this;
     }

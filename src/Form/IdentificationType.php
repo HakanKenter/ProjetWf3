@@ -40,8 +40,13 @@ class IdentificationType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('email')
+
             ->add('imageFile', FileType::class,['required' => false]);
 
+
+           // ->add('image')
+            ->add('telephone');
+ 
             
 
     }
