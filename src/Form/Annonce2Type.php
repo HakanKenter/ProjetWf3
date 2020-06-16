@@ -29,7 +29,7 @@ class Annonce2Type extends AbstractType
             // ->add('Image', FileType::class,[
             //     'label' => false, 
             // ])
-            ->add('imageFile', FileType::class,['required' => false])
+            ->add('imageFile', FileType::class,['required' => True])
             //->add('Image')
             ->add('description')
             ->add('category')

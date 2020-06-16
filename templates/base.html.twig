@@ -15,14 +15,17 @@
         {% endblock %}
     </head>
     <body>
-        <nav id="colorPerso" class="navbar navbar-expand-md navbar-dark border border-dark ">
-            <a class="navbar-brand" href="{{ path('blog') }}">ProjetWf3</a>
+        <nav id="colorPerso" class="navbar navbar-expand-md navbar-dark border border-dark">
+            <a class="navbar-brand bg-secondary rounded p-2" href="{{ path('blog') }}">AnnoncePerso</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExample04">
+            <div class="collapse navbar-collapse col-md-4" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('category') }}">Catégories</a>
+                    </li>
                     
                     {% if not app.user %}
                     
@@ -48,7 +51,7 @@
                                 {% if not app.user %}
                                 {% else %}
                                     <a class="dropdown-item" href="{{ path('annonce_personnel', {'id': app.user.id}) }}">{{ app.user.pseudo }}</a>
-                                    <a class="dropdown-item" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Profil</a>
+                                    <a class="dropdown-item" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Information Personnel</a>
                                     <a class="dropdown-item" href="{{ path('security_logout') }} ">Déconnexion</a> 
                                 {% endif %}
                             </div>
@@ -73,7 +76,7 @@
             <h5 class="mt-5 text-white">Bonjour !</h5>
             <p class="text-white">Inscrivez-vous ou connnectez-vous pour déposer une annonce.</p>
             <div class="col-md-8 d-flex justify-content-around mt-5"> 
-                <a class="rounded btn btn-dark" href="#">Connectez-vous</a>
+                <a class="rounded btn btn-dark" href="{{ path('security_login') }}">Connectez-vous</a>
                 <a class="rounded btn btn-dark" href="{{ path('registration') }}">Inscrivez-vous</a>
             </div>
         </div>
@@ -81,7 +84,7 @@
         {#######################################################################  Header  #######################################################################################}
 
         {# {% if app.request  %} #}
-            <div id="header" class="container-fluid contenu-base p-0">
+            <div id="header" class="container-fluid contenu-base p-0 bg-success">
 
                 <div id="sur-carousel">
                     
@@ -150,7 +153,14 @@
         
         {# {{ dump(app) }}  #}
         {##########################################################################################################################################################################}
+        {% for message in app.flashes('success') %}
 
+            <div class='alert alert-success col-md-3 mx-auto my-4 text-center'>
+                {{ message }}
+            </div>
+
+        {% endfor %}
+        
 
         <div id="block-body" class="container-fluid contenu-base2 p-0">
             {% block body %}
@@ -165,7 +175,7 @@
             <div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
                 <div class="col-md-7">
                     <h3>A propos de nous</h3>
-                    <p style="text-align: center">
+                    <p style="text-align: start">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     </p>
                 </div><hr>
@@ -184,7 +194,7 @@
         <footer id="footer" class="mx-auto p-3 text-white d-flex justify-content-center">
 
             <div>
-                &copy; 2020 - ProjetWf3 - Site d'annonce
+                &copy; 2020 - AnnoncePerso - Site d'annonce
             </div>
             
         </footer>

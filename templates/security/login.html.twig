@@ -2,14 +2,19 @@
 
 <h1 class="display-4 text-center mt-2">Bonjour!</h1>
 
+{% if error %}
+        
+        <p class="bg-danger text-white text-center p-2 col-md-3 m-3 mx-auto rounded">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+
+{% endif %}
+
+
 <form action="{{ path('security_login') }}" method="post" class="col-md-5 mx-auto">
 
     <div class="form-group">
         <label for="_username">Email</label>
-        <input type="text" class="form-control" name="_username" placeholder="Adresse email..." required="_username">
+        <input type="text" class="form-control" name="_username" placeholder="Adresse email..." required="_username" value="{{ last_username }}">
     </div>
-
-
 
     <div class="form-group">
         <label for="_password">Mot de passe</label>
@@ -24,5 +29,5 @@
 
 
     <div class="d-flex justify-content-center">
-        <p>Pas encore de compte? <strong><a href="#">Créer un compte</a></strong> </p>
+        <p>Pas encore de compte? <strong><a href="{{ path('registration') }}">Créer un compte</a></strong> </p>
     </div></em> {% endblock %}
