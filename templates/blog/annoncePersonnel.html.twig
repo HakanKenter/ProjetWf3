@@ -1,8 +1,9 @@
-{% block title %}Hello BlogController!
-{% endblock %}
+{% extends 'base.html.twig' %} 
+
+{% block title %}Hello BlogController!{% endblock %} 
+
+
 {% block body %}
-
-
 
 <h2 class="text-center my-5 col-md-3 mx-auto  p-2">Page personnelle</h2>
 <hr>
@@ -14,11 +15,11 @@
         <div class="col-md-4 rounded">
             <div class="col-md-10 bg-dark rounded d-flex flex-column justify-content-center ml-5 text-white text-center p-3">
                 <img class="mt-4 rounded" src="{{ user.image|replace({"640/480": "350/200"}) }}"><hr>
-                <p id="divInfoPersoOff" class="p-2 rounded bg-secondary">{{ user.pseudo }}</p>
-                <p id="divInfoPersoOff" class="p-2 rounded bg-secondary"><i class="far fa-envelope mr-2"></i><a class="text-white" href="mailto:{{ user.email }}">{{ user.email|raw }}</a></p>
-                <p id="divInfoPersoOff" class="p-2 rounded bg-secondary"><i class="fas fa-phone-alt mr-2"></i>{{ user.telephone }}</p>
+                <p class="p-2 rounded bg-secondary">{{ user.pseudo }}</p>
+                <p class="p-2 rounded bg-secondary"><i class="far fa-envelope mr-2"></i><a class="text-white" href="mailto:{{ user.email }}">{{ user.email|raw }}</a></p>
+                <p class="p-2 rounded bg-secondary"><i class="fas fa-phone-alt mr-2"></i>{{ user.telephone }}</p>
                 {% if app.user %}
-                    <a id="divInfoPersoOn" class="p-2 rounded bg-primary text-white text-decoration-none" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a>      
+                    <a class="p-2 rounded bg-primary text-white text-decoration-none" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a>      
                 {% endif %}
             </div>
        
@@ -40,18 +41,15 @@
 
                         <a id="colorBtnInput " class="btn btn-success rounded text-white" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}">Voir</a>
                         {% if app.user.id == annoncePersonnel.user.id %}
-                            <a id="colorBtnInput " class="btn rounded bg-white mr-2 ml-2" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}"><i style="color: rgb(160, 9, 127);" class="fas fa-pen"></i></a>
-                            <a id="colorBtnInput " class="btn rounded bg-white" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}"><i style="color: rgb(160, 9, 9);" class="far fa-trash-alt"></i></a>
+                            <a id="colorBtnInput " class="btn rounded bg-white mr-2 ml-2" href="{{ path('blogEdit', {'id': annoncePersonnel.id}) }}"><i style="color: rgb(160, 9, 127);" class="fas fa-pen"></i></a>
+                            <a id="colorBtnInput " class="btn rounded bg-white" href="{{ path('delete', {'id': annoncePersonnel.id}) }}" onclick="return confirm('Attention ceci va supprimer l\'annonce')" ><i style="color: rgb(160, 9, 9);" class="far fa-trash-alt"></i></a>
                         {% endif %}
-
                     </div>
-                   
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-</div>
-
+{% endblock %}
 
