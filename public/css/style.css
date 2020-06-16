@@ -116,23 +116,15 @@ li {
 }
 
 #divInfoPersoOn {
-    background-color: rgb(86, 87, 88);
+    background-color: rgb(122, 122, 122);
+    border: 1px solid black;
 }
 
 #divInfoPersoOn:hover {
-    background-color: rgb(47, 47, 48);
+    background-color: rgb(117, 117, 133);
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid black;
 }
-
-.ml2 {
-    font-weight: 900;
-    font-size: 3.5em;
-  }
-  
-  .ml2 .letter {
-    display: inline-block;
-    line-height: 1em;
-  }
 
 .footer {
     padding-bottom: 0;
@@ -146,97 +138,110 @@ img {
 .btnDown {
     padding-bottom: 0;
 }
+
+
 /* iPad Pro */
-@media screen and (min-width: 1000px) and (max-width: 1100px){
-    .categories{
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+    .categories {
         margin-bottom: 15vh;
     }
-    .bienvenue{
+    .bienvenue {
         font-size: 3em;
     }
 }
 
+
 /* iPad */
-@media screen and (min-width: 750px) and (max-width: 1000px){
-    .categories{
+
+@media screen and (min-width: 750px) and (max-width: 1000px) {
+    .categories {
         margin-bottom: 20vh;
     }
-    .bienvenue{
+    .bienvenue {
         display: none;
     }
-    .categories-cadre{
+    .categories-cadre {
         width: 100%;
     }
-    .bouton-rechercher{
+    .bouton-rechercher {
         width: 100%;
     }
 }
 
+
 /* iPhone X */
-@media screen and (min-width: 350px) and (max-width: 500px){
-    .categories{
+
+@media screen and (min-width: 350px) and (max-width: 500px) {
+    .categories {
         margin-bottom: 50vh;
     }
-    .bienvenue{
+    .bienvenue {
         display: none;
     }
-    .categories-cadre{
+    .categories-cadre {
         width: 100%;
     }
-    .bouton-rechercher{
+    .bouton-rechercher {
         width: 100%;
         position: relative;
         bottom: 5vh;
     }
-    .a-propos{
+    .a-propos {
         display: flex;
         flex-direction: column;
     }
-    .info-perso{
+    .info-perso {
         display: flex;
         flex-direction: column;
     }
 }
 
+
 /* iPhone 6/7/8 */
+
 @media screen and (min-width: 350px) and (min-height: 650px) and (max-width: 400px) and (max-height: 700px) {
-    .categories{
+    .categories {
         margin-bottom: 61vh;
     }
 }
 
+
 /* iPhone 5/SE */
+
 @media screen and (min-width: 300px) and (min-height: 550px) and (max-width: 400px) and (max-height: 650px) {
-    .categories{
+    .categories {
         margin-bottom: 73vh;
     }
-    .bienvenue{
+    .bienvenue {
         display: none;
     }
-    .bouton-rechercher{
+    .bouton-rechercher {
         width: 100%;
         position: relative;
         bottom: 8.5vh;
     }
-    .a-propos{
+    .a-propos {
         display: flex;
         flex-direction: column;
     }
-    .info-perso{
+    .info-perso {
         display: flex;
         flex-direction: column;
     }
 }
 
+
 /* Galaxy S5/ Moto G4 */
+
 @media screen and (min-width: 350px) and (min-height: 600px) and (max-width: 400px) and (max-height: 650px) {
-    .categories{
+    .categories {
         margin-bottom: 60vh;
     }
-    .bienvenue{
+    .bienvenue {
         display: none;
     }
-    .bouton-rechercher{
+    .bouton-rechercher {
         width: 100%;
         position: relative;
         bottom: 8.5vh;

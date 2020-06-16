@@ -1,5 +1,178 @@
 <!DOCTYPE html>
 <html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<title>
+			{% block title %}ProjetWf3
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+
+			<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+			<link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+		{% endblock %}
+	</head>
+	<body>
+		<nav id="colorPerso" class="navbar navbar-expand-md navbar-dark border border-dark">
+			<a class="navbar-brand bg-secondary rounded p-2" href="{{ path('blog') }}">AnnoncePerso</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarsExample04">
+				<ul class="navbar-nav d-flex justify-content-end mr-5">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ path('category') }}">Catégories</a>
+					</li>
+
+					{% if not app.user %}
+
+						<li class="nav-item active">
+							<a id="lien-deposer-annonce" class="nav-link" href="#">Déposer une annonce</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('registration') }}">Inscription</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('security_login') }} ">Connexion</a>
+						</li>
+
+					{% endif %}
+
+					{% if app.user %}
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('blog_create') }}">Déposer une annonce</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle bg-dark rounded" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compte</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown04">
+								{% if not app.user %}
+									{% else %}
+										<a class="dropdown-item" href="{{ path('annonce_personnel', {'id': app.user.id}) }}">{{ app.user.pseudo }}</a>
+										<a class="dropdown-item" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Information Personnel</a>
+										<a class="dropdown-item" href="{{ path('security_logout') }} ">Déconnexion</a>
+								{% endif %}
+							</div>
+						</li>
+
+					{% endif %}
+
+					{% if is_granted('ROLE_ADMIN') %}
+
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('easyadmin') }}">BACKOFFICE</a>
+						</li>
+
+					{% endif %}
+
+				</ul>
+			</div>
+		</nav>
+
+		<div id="desposer-annonce" class="deposer-annonce container col-md-5 p-3 rounded">
+			<h2 class="deposer-annonce-titre col-md-6 text-center p-2 m-3 rounded">Déposer une annonce</h2>
+			<h5 class="mt-5 text-white">Bonjour !</h5>
+			<p class="text-white">Inscrivez-vous ou connnectez-vous pour déposer une annonce.</p>
+			<div class="col-md-8 d-flex justify-content-around mt-5">
+				<a class="rounded btn btn-dark" href="{{ path('security_login') }}">Connectez-vous</a>
+				<a class="rounded btn btn-dark" href="{{ path('registration') }}">Inscrivez-vous</a>
+			</div>
+		</div>
+
+		{#######################################################################  Header  #######################################################################################}
+
+		{# {% if app.request  %} #}
+		<div id="header" class="container-fluid contenu-base p-0 bg-success">
+
+			<div id="sur-carousel">
+
+				{% block AnnoncePerso %}
+					<img class="col-md-6" src="images/logo.png">
+				{% endblock %}
+
+				{% block Bienvenue %}{% endblock %}
+
+				{% block Categories %}{% endblock %}
+
+			</div>
+
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="https://www.moxleyandco.travel/wp-content/uploads/sites/2/2017/03/New-Zealand-Milford-Sound-Mirror-Lakes-shutterstock_163224299-1920x800.jpg" alt="First slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/58088d02197aeaf2957b9033/1528954946179-EOEJFTFFBLGZ7C462DHF/ke17ZwdGBToddI8pDm48kAgzYejSbWGRoJP4yk7IdNQUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dtCOkMDEaPiGoIoGazr_ji7tWlVp5kgqCHrK9bIsxYYSbSexTd1-frD7527z4SM9QQ/Namibia-Twyfelfontein-dawn-1920x800.jpg?format=2500w" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="https://montblanctreks.com/thumbs/home/home-hero-1-1920x1077-1920x800-q40.jpg" alt="Third slide">
+					</div>
+				</div>
+			</a>
+		</div>
+	</body>
+</html></div>{# {% endif %} #}{# {{ dump(app) }}  #}{##########################################################################################################################################################################}
+{% for message in app.flashes('success') %}
+
+	<div class='alert alert-success col-md-3 mx-auto my-4 text-center'> {{ message }}
+</div>{% endfor %}<div id="block-body" class="container-fluid contenu-base2 p-0"> {% block body %}{% endblock %}
+</div>
+
+{# {{ dump(app) }} #}
+
+<div id="article" class="bg-dark mx-auto p-3 text-white ">
+	<div class="d-flex p-3 mx-auto text-white col-md-10 justify-content-around">
+		<div class="col-md-7">
+			<h3>A propos de nous</h3>
+			<p style="text-align: start">
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			</p>
+		</div><hr>
+
+		<div class="col-md-3">
+			<h3>Besoin d'aide ?</h3>
+			<ul class="p-0">
+				<li class="text-decoration-none">
+					<a href="#">Contact</a>
+				</li>
+				<li class="text-decoration-none">
+					<a href="{{ path('CGV') }}">CGV</a>
+				</li>
+				<li class="text-decoration-none">
+					<a href="#">Mentions Légale</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="mx-auto p-3 text-white d-flex justify-content-center">
+
+	<div>
+		&copy; 2020 - AnnoncePerso - Site d'annonce
+	</div>
+
+</footer>
+
+
+{% block javascripts %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+	<script src="js/app.js"></script>
+
+{% endblock %}</body></html>
+
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="height=device-height, width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
@@ -182,3 +355,4 @@
         {% endblock %}
     </body>
 </html>
+
