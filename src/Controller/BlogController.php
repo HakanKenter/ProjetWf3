@@ -95,9 +95,6 @@ class BlogController extends AbstractController
        // dump($user);
 
         // return $this->render('blog/show.html.twig');
-
-
-
         return $this->render('blog/show.html.twig',['annonce'=> $annonce,'user'=> $user]);
     }
     

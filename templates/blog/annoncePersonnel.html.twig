@@ -42,18 +42,14 @@
 
                         <a id="colorBtnInput " class="btn btn-success rounded text-white" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}">Voir</a>
                         {% if app.user.id == annoncePersonnel.user.id %}
-                            <a id="colorBtnInput " class="btn rounded bg-white mr-2 ml-2" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}"><i style="color: rgb(160, 9, 127);" class="fas fa-pen"></i></a>
-                            <a id="colorBtnInput " class="btn rounded bg-white" href="{{ path('blog_show', {'id': annoncePersonnel.id} ) }}"><i style="color: rgb(160, 9, 9);" class="far fa-trash-alt"></i></a>
+                            <a id="colorBtnInput " class="btn rounded bg-white mr-2 ml-2" href="{{ path('blogEdit', {'id': annoncePersonnel.id}) }}"><i style="color: rgb(160, 9, 127);" class="fas fa-pen"></i></a>
+                            <a id="colorBtnInput " class="btn rounded bg-white" href="{{ path('delete', {'id': annoncePersonnel.id}) }}" onclick="return confirm('Attention ceci va supprimer l\'annonce')" ><i style="color: rgb(160, 9, 9);" class="far fa-trash-alt"></i></a>
                         {% endif %}
-
                     </div>
-                   
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-
-</div>
 
 {% endblock %}
