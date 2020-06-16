@@ -31,56 +31,42 @@ class BlogController extends AbstractController
      */
     public function formulaire(Annonce $annonce = null, Request $request, EntityManagerInterface $manager)
     {
-        // $user = new User;
-        
         if(!$annonce)
         {
             $annonce = new Annonce();
         }
-        // $user =  new User;
+
+
         $id = $this->getUser()->getId();
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $userSS = $repo->find($id);
+        $user_id = $repo->find($id);
 
-        // $user->setPrenom($userSS);
-        // $util= $annonce->setUser($userSS);
-        // $form = $this->createFormBuilder($annonce)
-        //              ->add('title')
-        //              ->add('Prix')
-        //              ->add('Image')
-        //              ->add('user')
-        //              ->getForm();
-
-        
         $form = $this->createForm(Annonce2Type::class, $annonce);
                                                      
         $form->handleRequest($request);
 
         // dump($annonce); 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
             if (!$annonce->getId()) 
             {
-                $user = new User;
                 $annonce->setCreatedAt(new \DateTime());
-                $annonce->setUser($userSS);
-                // $post = $this->getDoctrine()->getRepository(UserRepository::class)->find($id);
-                // $this->$annonce->setUser(1);
+                $annonce->setUser($user_id);
             }
            
             $manager->persist($annonce);
             $manager->flush();
+            $this->addFlash('success', 'Votre annonce a bien été enregistrée !');
             return $this->redirectToRoute('blog_show', ['id' => $annonce->getId()]);
+
         }
 
+
+
         return $this->render('blog/depot_annonce.html.twig',[
-
-        // dump($annonce);
-        // return $this->render('blog/annonce.html.twig',[
-
             'formAnnonce' => $form->createView(),
             'editMode' => $annonce->getId()!== null,
-            'userSS' => $userSS
+            'userSS' => $user_id
         ]);
     }
 
@@ -106,11 +92,15 @@ class BlogController extends AbstractController
     public function show($id) 
     {
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
+        $annonce = $repo->find($id);
+        $id_user = $repo->find($id)->getUser();
 
-         $annonce = $repo->find($id);
+        $reponse = $this->getDoctrine()->getRepository(User::class);
+        $user = $reponse->find($id_user);
+        dump($user);
 
         // return $this->render('blog/show.html.twig');
-        return $this->render('blog/show.html.twig',['annonce'=> $annonce]);
+        return $this->render('blog/show.html.twig',['annonce'=> $annonce,'user'=> $user]);
     }
     
 

@@ -5,8 +5,8 @@
 
     <h3 class="my-4 mx-auto text-center">Information personnel</h3>
 
-    <div class="col-md-11 mx-auto d-flex justify-content-center mt-5 mb-5 border p-3" >
-        <div class="col-md-6 rounded mr-3">
+    <div class="col-md-11 mx-auto d-flex justify-content-center mt-5 mb-5 border p-3 info-perso" >
+        <div class="col-md-6 rounded mr-3 mb-3 mb-sm-0">
             <div id="colorPerso" class=" col-md-12  mx-auto rounded d-flex flex-column justify-content-center text-white text-center p-3 border border-secondary">
                 <img class="mt-4 mx-1 rounded border-top border-dark " src="{{ app.user.image|replace({"640/480": "350/210"}) }}"><hr>
                 <p id="divInfoPersoOff" class="p-2 rounded  border-top border-dark ">{{ app.user.pseudo }}</p>
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 border-left">
+        <div class="col-md-6">
 
             <div id="colorPerso" class="col-md-12 d-flex rounded border border-secondary">
 
