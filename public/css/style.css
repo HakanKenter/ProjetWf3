@@ -84,10 +84,17 @@ footer {
     justify-content: space-around;
 }
 
+.nav-item {
+    margin-right: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
 .nav-link:hover {
     background-color: gray;
     border-radius: 5px 5px 5px;
+    display: flex;
+    justify-content: center;
 }
 
 li {

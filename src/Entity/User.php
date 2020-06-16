@@ -121,7 +121,6 @@ class User implements UserInterface
     /**
      * @Vich\UploadableField(mapping="produits_image", fileNameProperty="image")
      */
-    
     private $imageFile;
 
     /**
@@ -134,6 +133,7 @@ class User implements UserInterface
      */
     private $updated_at;
 
+    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min = 10, max = 10, minMessage = "min_lenght", maxMessage = "max_lenght")
      * @Assert\Regex(pattern="/^[0-9]*$/", message="number_only") 
@@ -380,6 +380,8 @@ class User implements UserInterface
     {
         $this->updated_at = $updated_at;
 
+    }
+    
     public function getTelephone(): ?string
     {
         return $this->telephone;
