@@ -167,20 +167,6 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/create", name="create")
-     */
-    public function form()
-    {
-        $annonce = new Annonce;
-
-        $form = $this->createForm(AnnonceFormType::class, $annonce);
-
-        return $this->render('blog/create.html.twig', [
-            'formAnnonce' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/blog/{id}/perso", name="annonce_personnel")
      */
     public function annoncePersonnel(User $user)
