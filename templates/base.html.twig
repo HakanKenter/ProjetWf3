@@ -21,8 +21,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse col-md-4" id="navbarsExample04">
-                <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav d-flex justify-content-end mr-5">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ path('category') }}">Catégories</a>
                     </li>
@@ -46,7 +46,7 @@
                             <a class="nav-link" href="{{ path('blog_create') }}">Déposer une annonce</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compte</a>
+                            <a class="nav-link dropdown-toggle bg-dark rounded" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compte</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
                                 {% if not app.user %}
                                 {% else %}
