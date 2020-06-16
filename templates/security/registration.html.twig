@@ -1,42 +1,40 @@
-{% extends 'base.html.twig' %} 
-
+{% extends 'base.html.twig' %}
 {% block body %}
 
-<h1 class="display-4 my-4 mx-auto text-center">Inscription</h1>
+	<h1 class="display-4 my-4 mx-auto text-center">Inscription</h1>
+	<hr>
+{{ form_start(formIdentification, { 'attr' : { 'class' : 'col-md-6 mx-auto mb-5 rounded border border-secondary p-2','id':'divInfoPersoOff' }}
+) }}
 
+	{{ form_row(formIdentification.prenom,{'id' : 'colorBtnInput','class' :'rounded border border-secondary'})}}
+	{{ form_row(formIdentification.nom,{'id' : 'colorBtnInput' })}}
+	{{ form_row(formIdentification.civilite,{'id' : 'colorBtnInput' }) }}
+	{{ form_row(formIdentification.email,{'id' : 'colorBtnInput' }) }}
+	{{ form_row(formIdentification.telephone,{'id' : 'colorBtnInput' }) }}
+	{{ form_row(formIdentification.pseudo,{'id' :'colorBtnInput' }) }}
+	{{ form_row(formIdentification.password, {'label' : 'Mot de passe','id':'colorBtnInput'}) }}
+	{{ form_row(formIdentification.confirm_password, {'label' : 'Confirmez votre mot de passe', 'id' : 'colorBtnInput'}) }}
+	{{ form_row(formIdentification.ville,{'id': 'colorBtnInput' }) }}
+	{{ form_row(formIdentification.adresse,{'id' : 'colorBtnInput' }) }}
+	{{ form_row(formIdentification.birth, {'label' : 'Date de naissance' , 'attr' : { 'class' : 'col-md-4' }, 'id' : 'colorBtnInput' }) }}
+	{# {{ form_row(formIdentification.birth,
+	{'label' : 'Date de naissance' , 'attr' : { 'class' : 'col-md-4' } }) }} #}
+	{{ form_row(formIdentification.imageFile, {'label' : 'Image de profil'}) }}
 
-    {{ form_start(formIdentification, { 'attr' : { 'class' : 'col-md-6 mx-auto mb-5' }}) }}
+    <div>
+		<input id="divInfoPersoOn" class="form-controle mr-2" type="checkbox" id="cgv" name="cgv" required="true" oninvalid="this.setCustomValidity('Veuillez acceptez les Conditions Générale de Ventes')" oninput="setCustomValidity('')">
+		<label for="cgv">J'accepte les
+			<a href="{{ path('CGV') }}">Conditions Générales de Ventes et d'Utilisation</a>
+		</label><br>
+	</div>
+	
+	<div class="mb-4">
+        <input class="form-controle mr-2" type="checkbox" id="politiqueConfidentialite" name="politiqueConfidentialite" required="true" oninvalid="this.setCustomValidity('Veuillez acceptez notre Politique de Confidentialité')" oninput="setCustomValidity('')">
+        <label for="cgv">J'accepte la <a href="{{ path('politique_de_confidentialite') }}">Politique de Confidentialité</a></label><br>
+    </div>
+	
 
-
-        {{ form_row(formIdentification.prenom) }}
-        {{ form_row(formIdentification.nom) }}
-        {{ form_row(formIdentification.civilite) }}
-        {{ form_row(formIdentification.email) }}
-        {{ form_row(formIdentification.telephone) }}
-        {{ form_row(formIdentification.pseudo) }}
-        {{ form_row(formIdentification.password, {'label' : 'Mot de passe'}) }}
-        {{ form_row(formIdentification.confirm_password, {'label' : 'Confirmez votre mot de passe'}) }}
-        {{ form_row(formIdentification.ville) }}
-        {{ form_row(formIdentification.adresse) }}
-        {{ form_row(formIdentification.birth, {'label' : 'Date de naissance' , 'attr' : { 'class' : 'col-md-4' }  }) }}
-
-        {{ form_row(formIdentification.imageFile, {'label' : 'Image de profil'}) }}
-
-       {# {{ form_row(formIdentification.image, {'label' : 'Photo de profil'}) }} #}
-
-
-        <div>
-            <input class="form-controle mr-2" type="checkbox" id="cgv" name="cgv" required="true" oninvalid="this.setCustomValidity('Veuillez acceptez les Conditions Générale de Ventes')" oninput="setCustomValidity('')">
-            <label for="cgv">J'accepte les <a href="{{ path('CGV') }}">Conditions Générales de Ventes et d'Utilisation</a></label><br>
-        </div>
-        <div class="mb-4">
-            <input class="form-controle mr-2" type="checkbox" id="politiqueConfidentialite" name="politiqueConfidentialite" required="true" oninvalid="this.setCustomValidity('Veuillez acceptez notre Politique de Confidentialité')" oninput="setCustomValidity('')">
-            <label for="cgv">J'accepte la <a href="{{ path('politique_de_confidentialite') }}">Politique de Confidentialité</a></label><br>
-        </div>
-      
-        <button class="btn btn-dark col-md-2" type="submit">S'incrire</button>
-
-    {{ form_end(formIdentification) }}
-    
+	<button id="divInfoPersoOn" class="btn col-md-2" type="submit">S'incrire</button>
+	{{ form_end(formIdentification,{'id' : 'colorBtnInput' }) }}
+	<hr>
 {% endblock %}
- 

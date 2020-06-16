@@ -79,11 +79,11 @@ class BlogController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('blog');
     }
-    
+      
     /**
      * @Route("/blog/{id}/show", name="blog_show")
      */
-    public function show($id) 
+    public function show($id)
     {
         $repo = $this->getDoctrine()->getRepository(Annonce::class);
         $annonce = $repo->find($id);
