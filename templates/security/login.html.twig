@@ -79,12 +79,19 @@
         {####################################################################### Header #######################################################################################} {# {% if app.request %} #} {% block body %}
 
         <h1 class="display-4 text-center mt-2">Bonjour!</h1>
+{% if error %}
+
+	<p class="bg-danger text-white text-center p-2 col-md-3 m-3 mx-auto rounded">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+
+{% endif %}
+
 
         <form action="{{ path('security_login') }}" method="post" class="col-md-5 mx-auto">
 
             <div id="colorBtnInput" class="form-group rounded border border-secondary pb-1p ">
                 <label for="_username">Email</label>
-                <input type="text" class="form-control" name="_username" placeholder="Adresse email..." required="_username">
+<input type="text" class="form-control" name="_username" placeholder="Adresse email..." required="_username" value="{{ last_username }}">
+
             </div>
 
 

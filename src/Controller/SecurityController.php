@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\IdentificationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,7 +37,7 @@ class SecurityController extends AbstractController
         dump($request);
 
         $form->handleRequest($request);
-
+        $user->setRoles(['ROLE_USER']);
         $error = $authenticationUtils->getLastAuthenticationError();
 
 
@@ -44,16 +45,13 @@ class SecurityController extends AbstractController
         {
 
             $user->setCreatedAt(new \DateTime());
-
             $hash = $encoder->encodePassword($user, $user->getPassword());
-
-
             $user->setPassword($hash); 
-
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('security_login'); // On redirige vers ma page de connexion après inscription
+            $this->addFlash('success', 'Félicitation ! Vous êtes maintenant inscrit !');
+            return $this->redirectToRoute('security_login');
         }
 
         return $this->render('security/registration.html.twig', [
@@ -75,10 +73,11 @@ class SecurityController extends AbstractController
 
         $form = $this->createForm(IdentificationType::class, $user); 
 
+        $user->setRoles(['ROLE_USER']);
         $form->handleRequest($request);
         $user->setRoles(['ROLE_USER']);
 
-        $error = $authenticationUtils->getLastAuthenticationError();
+        // $error = $authenticationUtils->getLastAuthenticationError();
 
 
         if($form->isSubmitted() && $form->isValid())
@@ -97,6 +96,8 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+
+            $this->addFlash('success', 'Vos modifications ont été enregistrées avec succès !');
         
         }
 
@@ -110,9 +111,15 @@ class SecurityController extends AbstractController
 
      * @Route("/connexion", name="security_login")
      */
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils): Response 
     {
-        return $this->render('security/login.html.twig');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     /**

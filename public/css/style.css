@@ -1,6 +1,6 @@
 html,
 body {
-    max-width: 100%;
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -74,7 +74,27 @@ footer {
 }
 
 #colorPerso {
-    background-color: #D1A97A
+    background-color: #D1A97A;
+    display: flex;
+    justify-content: center;
+}
+
+#navbarsExample04 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    margin-right: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.nav-link:hover {
+    background-color: gray;
+    border-radius: 5px 5px 5px;
+    display: flex;
+    justify-content: center;
 }
 
 li {
@@ -110,9 +130,6 @@ li {
     padding-bottom: 0;
 }
 
-
-/* ee */
-
 img {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
@@ -120,4 +137,113 @@ img {
 
 .btnDown {
     padding-bottom: 0;
+}
+
+
+/* iPad Pro */
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+    .categories {
+        margin-bottom: 15vh;
+    }
+    .bienvenue {
+        font-size: 3em;
+    }
+}
+
+
+/* iPad */
+
+@media screen and (min-width: 750px) and (max-width: 1000px) {
+    .categories {
+        margin-bottom: 20vh;
+    }
+    .bienvenue {
+        display: none;
+    }
+    .categories-cadre {
+        width: 100%;
+    }
+    .bouton-rechercher {
+        width: 100%;
+    }
+}
+
+
+/* iPhone X */
+
+@media screen and (min-width: 350px) and (max-width: 500px) {
+    .categories {
+        margin-bottom: 50vh;
+    }
+    .bienvenue {
+        display: none;
+    }
+    .categories-cadre {
+        width: 100%;
+    }
+    .bouton-rechercher {
+        width: 100%;
+        position: relative;
+        bottom: 5vh;
+    }
+    .a-propos {
+        display: flex;
+        flex-direction: column;
+    }
+    .info-perso {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/* iPhone 6/7/8 */
+
+@media screen and (min-width: 350px) and (min-height: 650px) and (max-width: 400px) and (max-height: 700px) {
+    .categories {
+        margin-bottom: 61vh;
+    }
+}
+
+
+/* iPhone 5/SE */
+
+@media screen and (min-width: 300px) and (min-height: 550px) and (max-width: 400px) and (max-height: 650px) {
+    .categories {
+        margin-bottom: 73vh;
+    }
+    .bienvenue {
+        display: none;
+    }
+    .bouton-rechercher {
+        width: 100%;
+        position: relative;
+        bottom: 8.5vh;
+    }
+    .a-propos {
+        display: flex;
+        flex-direction: column;
+    }
+    .info-perso {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/* Galaxy S5/ Moto G4 */
+
+@media screen and (min-width: 350px) and (min-height: 600px) and (max-width: 400px) and (max-height: 650px) {
+    .categories {
+        margin-bottom: 60vh;
+    }
+    .bienvenue {
+        display: none;
+    }
+    .bouton-rechercher {
+        width: 100%;
+        position: relative;
+        bottom: 8.5vh;
+    }
 }

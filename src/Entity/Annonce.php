@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
+ * @Vich\Uploadable
  */
 class Annonce
 {
@@ -43,11 +47,26 @@ class Annonce
      */
     private $user;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
-    //  */
-    // private $category;
+     /**
+     * @Vich\UploadableField(mapping="produits_image", fileNameProperty="Image")
+     */
+    private $imageFile;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+  
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonce")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
 
     public function getId(): ?int
     {
@@ -83,7 +102,7 @@ class Annonce
         return $this->Image;
     }
 
-    public function setImage(string $Image): self
+    public function setImage(?string $Image): self
     {
         $this->Image = $Image;
 
@@ -114,32 +133,60 @@ class Annonce
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 
-    // public function __toString()
-    // {
-    //     return $this->title;
-    // }
 
-    // public function __toString()
-    // {
-    //     return $this->user;
-    // }
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+        
+        if($this->imageFile instanceof UploadedFile){
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
 
     public function __toString()
     {
         return $this->title;
     }
+  
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
 
-    // public function getCategory(): ?Category
-    // {
-    //     return $this->category;
-    // }
+    public function setUpdatedAt(\DateTimeInterface $updated_at)
+    {
+        $this->updated_at = $updated_at;
+    }
+  
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
 
-    // public function setCategory(?Category $category): self
-    // {
-    //     $this->category = $category;
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
-    //     return $this;
-    // }
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
 }

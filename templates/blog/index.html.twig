@@ -1,24 +1,48 @@
-{% extends 'base.html.twig' %} {% block title %}Hello BlogController!{% endblock %} {% block Bienvenue %}
+{% extends "base.html.twig" %}
 
-<h1 id="titre-accueil" class='display-4 text-white mb-5'>{{ title }}</h1>
-
-{% endblock %} {% block body %}
+ {% block body %}
 
 
+    <h1 id="titre-accueil" class='mx-auto text-white mb-5 text-center bienvenue ml2'>{{ title }}</h1>
 
-<section class="annonces row d-flex justify-content-center">
-    {% for annonce in annonces %}
-    <article id="colorPerso" class="col-md-3 border border-dark rounded mr-5 mb-5 mt-5 text-center">
-        <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded">
-        <hr>
-        <h2>{{ annonce.title }}</h2>
-        <p> Prix : {{ annonce.prix }}</p>
-        <hr>
-        <div class="metadata btnDown">Posté le {{annonce.createdAt | date('d/m/y') }} à {{annonce.createdAt | date('H:i') }} dans la categorie #yy {#{{annonce.category.title}}#}</div>
-        <a id="divInfoPersoOn" href="{{ path('blog_show', {'id':annonce.id}) }}" class="btn">Voir l'annonce</a>
-    </article>
+                        
+
+
+{# {% block Categories %}
+  
+    <div class="col-md-4 rounded p-5 categories">                            
+        {{form_start(formCategory)}}
+            <div class="form-row">
+                <div id="cadre-recherche" class="categories-cadre form-group rounded p-2 pl-5 pr-5 mx-auto m-0 text-white">
+                    {{ form_row(formCategory.category) }}
+                </div>
+                <div class="mt-5 d-flex justify-content-center mx-auto">
+                    <button type="submit" class="btn btn-success bouton-rechercher">Rechercher</button>
+                </div>
+            </div>
+        {{form_end(formCategory)}}
+    </div>
+
+{% endblock %} #}
+
+
+   
+    <section class="annonces row d-flex justify-content-center">
+        {% for annonce in annonces %}
+
+            {#{% if annonce.category.id == categories.id %}#}
+                <article id="colorPerso" class="col-md-3 border border-secondary rounded mr-5 mb-5 mt-5 text-center">
+                    <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr>
+                    <h2>{{ annonce.title }}</h2>
+                    <p> Prix : <span class="font-weight-bold" >{{ annonce.prix }}</span></p><hr>
+                    <p> Catégory : <span class="font-weight-bold" >{{ annonce.category.nom }}</span></p><hr>
+                    <div class="metadata">Posté le {{annonce.createdAt | date('d/m/y') }} à {{annonce.createdAt | date('H:i') }} dans la categorie  #yy {#{{annonce.category.title}}#}</div> 
+                    <a id="divInfoPersoOn" href="{{ path('blog_show', {'id':annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+                </article>
+            {#{% endif %}#}
 
     {% endfor %}
 </section>
 
+    
 {% endblock %}

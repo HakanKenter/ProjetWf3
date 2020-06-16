@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Annonce;
+use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -42,9 +43,21 @@ class AnnonceFixtures extends Fixture
                         ->setPrix(mt_rand(1,500))
                         ->setImage($faker->imageUrl())
                         ->setCreatedAt($faker->dateTimeBetween('-6 months'))
+                        ->setDescription($faker->sentence())
                         ->setUser($user);
                 
                 $manager->persist($annonce);
+
+                for($k = 1; $k <= 1; $k++)
+                {
+                    $category = new Category;
+
+                    $category->setNom($faker->firstname())
+                             ->addAnnonce($annonce);
+
+                    $manager->persist($category);
+                    
+                }
             }
         }
 

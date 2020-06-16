@@ -5,6 +5,29 @@ footer = document.getElementById("footer");
 deposerAnnonce = document.getElementById("deposer-annonce");
 // eventClick = addEventListener('click', NoneDeposerAnnonce);
 
+// Animation "Bienvenue"
+
+var textWrapper = document.querySelector('.ml2');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 10000000000
+  });
+
+
 // __________________________________________________________________________________________________________________________________________________________________________
 
 function blockDeposerAnnonce(){
@@ -19,7 +42,7 @@ function blockDeposerAnnonce(){
     document.getElementById("desposer-annonce").style.alignItems = "center";
 };
 
-document.getElementById("lien-deposer-annonce").addEventListener("click", blockDeposerAnnonce);
+  document.getElementById("lien-deposer-annonce").addEventListener("click", blockDeposerAnnonce);
 
 // __________________________________________________________________________________________________________________________________________________________________________
 
@@ -44,3 +67,10 @@ if(blockDeposerAnnonce){
 // __________________________________________________________________________________________________________________________________________________________________________
 
 
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
