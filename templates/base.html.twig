@@ -87,6 +87,10 @@
             <div id="header" class="container-fluid contenu-base p-0 bg-success">
 
                 <div id="sur-carousel">
+
+                    {% block AnnoncePerso %}
+                            <img class="col-md-6" src="images/logo.png" > 
+                    {% endblock %}
                     
                     {% block Bienvenue %}
                         
@@ -96,41 +100,7 @@
                     {% block Categories %}
                         
                     {% endblock %}
-                    <!-- <form method="post" class="col-md-5">
-
-                        <div class="form-row">
-                            <div id="cadre-recherche" class="form-group col-md-12 mx-auto p-3 d-flex justify-content-around m-0">
-                                <select class="form-control col-md-12" name="categorie" id="categorie">
-                                    <option value="vetement">Vêtement</option>
-                                    <option value="vehicule">Véhicule</option>
-                                    <option value="maison">Maison</option>
-                                    <option value="loisirs">Loisirs</option>
-                                    <option value="multimedia">Multimédia</option>
-                                    <option value="materielProfessionel">Matériel Professionnel</option>
-                                    <option value="divers">Divers</option>
-                                </select>
-                                <input type="text" class="form-control col-md-3" id="recherche" name="recherche" placeholder="Recherche">
-                                <a href="#"><i class="fas fa-search" style="color: white; font-size:30px"></i></a>
-                                <input type="text" class="form-control col-md-3" id="ville" name="ville" placeholder="Ville">
-                            </div>
-                        </div>
-                        <div class="form-row mt-3">
-                            <div class="form-group col-md-12 d-flex justify-content-around">
-                                <select class="form-control col-md-3" name="date" id="date">
-                                    <option value="recent">Recent</option>
-                                    <option value="ancien">Ancien</option>
-                                </select>
-                                <select class="form-control col-md-3" name="prix" id="prix">
-                                    <option value="prixCroissant">Prix croissant</option>
-                                    <option value="prixDecroissant">Prix décroissant</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center mb-5 mb-sm-0">
-                            <button type="submit" class="btn btn-success mt-5 col-md-5">Rechercher</button>
-                        </div>
-                    </form> -->
-                        
+                   
                 </div>
                 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

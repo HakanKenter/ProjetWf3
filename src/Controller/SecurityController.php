@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\IdentificationType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +29,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registration", name="registration")
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, AuthenticationUtils $authenticationUtils)
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, AuthenticationUtils $authenticationUtils, ContactNotification $notification)
     {
         $user = new User;
 
@@ -43,7 +44,8 @@ class SecurityController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-
+            $notification->notify($user);
+            $this->addFlash('successs', 'Votre Email a bien été envoyé');
             $user->setCreatedAt(new \DateTime());
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash); 
@@ -153,22 +155,4 @@ class SecurityController extends AbstractController
         return $this->render('security/politiqueConfidentialite.html.twig');
 
     }
-
-    // /**
-    //  * @Route("/connexion/motdepasse", name="motdepasse")
-    //  */
-    // public function mot_de_passe(Request $request)
-    // {
-
-    //     dump($request);
-    //     $msg = "Ta réussi...";
-
-    //     if($request->request->count() > 0)
-    //     {
-    //         return $this->render('security/motdepasse.html.twig', [
-    //             "msgdata" => $msg
-    //         ]);
-    //     }
-    //     return $this->render('security/motdepasse.html.twig');
-    // }   
 }
