@@ -74,7 +74,27 @@ footer {
 }
 
 #colorPerso {
-    background-color: #D1A97A
+    background-color: #D1A97A;
+    display: flex;
+    justify-content: center;
+}
+
+#navbarsExample04 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    margin-right: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.nav-link:hover {
+    background-color: gray;
+    border-radius: 5px 5px 5px;
+    display: flex;
+    justify-content: center;
 }
 
 li {

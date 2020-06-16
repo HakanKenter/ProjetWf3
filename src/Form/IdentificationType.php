@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class IdentificationType extends AbstractType
 {
@@ -39,12 +40,10 @@ class IdentificationType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('email')
-
-            ->add('image');
-            //->add('Roles', HiddenType::class);
-            // ->add('Roles', ChoiceType::class, ['choice_value' => ChoiceList::value($this, 'ROLE_USER'),
+            ->add('imageFile', FileType::class,['required' => false])
+            ->add('telephone');
+ 
             
-            // ]);
 
     }
 

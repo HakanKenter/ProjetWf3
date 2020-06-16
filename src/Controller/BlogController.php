@@ -36,7 +36,6 @@ class BlogController extends AbstractController
             $annonce = new Annonce();
         }
 
-
         $id = $this->getUser()->getId();
         $repo = $this->getDoctrine()->getRepository(User::class);
         $user_id = $repo->find($id);
@@ -70,9 +69,6 @@ class BlogController extends AbstractController
         ]);
     }
 
-
- 
-
      /**
      * @Route("/blog/{id}/delete", name="delete")
      */
@@ -84,8 +80,6 @@ class BlogController extends AbstractController
         return $this->redirectToRoute('blog');
     }
     
-
-
     /**
      * @Route("/blog/{id}/show", name="blog_show")
      */
@@ -97,25 +91,28 @@ class BlogController extends AbstractController
 
         $reponse = $this->getDoctrine()->getRepository(User::class);
         $user = $reponse->find($id_user);
-        dump($user);
+
+       // dump($user);
 
         // return $this->render('blog/show.html.twig');
+
+
+
         return $this->render('blog/show.html.twig',['annonce'=> $annonce,'user'=> $user]);
     }
     
-
     /**
      * @Route("/", name="blog")
      * @Route("", name="blog")
      */
     public function index(Request $request)
-    {                      
+    {                
         $annonce = new Annonce;
 
         $form = $this->createForm(SelectionCategoryType::class, $annonce);
         $form->handleRequest($request);
         $categories = [ 'id' => null ];
-        $repo = $this-> getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
+        $repo = $this->getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
         $annonces = $repo->findAll();  // la variable annonces est un array et on va le passer à twig
 
         if($form->isSubmitted() && $form->isValid())
@@ -130,7 +127,35 @@ class BlogController extends AbstractController
             'categories' => $categories,
             'title' => "Bonjour et bienvenue sur notre site internet !"
         ]);
+        
+       
+    }
 
+    /**
+     * @Route("/category", name="category")
+     */
+    public function category(Request $request)
+    {                      
+        $annonce = new Annonce;
+
+        $form = $this->createForm(SelectionCategoryType::class, $annonce);
+        $form->handleRequest($request);
+        $categories = [ 'id' => null ];
+        $repo = $this->getDoctrine()->getRepository(Annonce::class);  //permet d'aller chercher tous les annonces
+        $annonces = $repo->findAll();  // la variable annonces est un array et on va le passer à twig
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $categories = $annonce->getCategory();
+        }
+ 
+        return $this->render('blog/category.html.twig', [
+            'formCategory' => $form->createView(),
+            'controller_name' => 'BlogController',
+            'annonces' => $annonces,
+            'categories' => $categories,
+            'title' => "Bonjour et bienvenue sur notre site internet !"
+        ]);
     }
 
     /**
