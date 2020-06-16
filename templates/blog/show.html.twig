@@ -1,112 +1,97 @@
-{% extends "base.html.twig" %}
+{% extends "base.html.twig" %} 
 
 {% block body %}
-{# bbb #}
 
-	<div class="row text-center">
-	<div class="container d-flex justify-around mt-5 mb-5">
+<div class="row text-center">
+    <div class="container d-flex justify-around mt-5 mb-5">
         <br>
         <br>
 
-		<div class="col-md-8">
-			<div class="image">
-				<article>
+        <div class="col-md-8">
+            <div id="colorPerso" class="image">
+                <article class="border border-secondary rounded">
                     <img class="card-img-top" src="{{ asset('images/produits/' ~ annonce.image ) }}" alt="Card image cap">
-					{# <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"><hr> #}
-					<h2>{{ annonce.title }}</h2>
+                    {# <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"> #}
+                    <hr>
+                    <h2>{{ annonce.title }}</h2>
 
-					<p>
-						Prix :
-						{{ annonce.prix }}</p><hr>
-					<div class="metadata">Posté le
-						{{annonce.createdAt | date('d/m/y') }}
-						à
-						{{annonce.createdAt | date('H:i') }}
-
-						dans la categorie ####
-						{# <strong>{{annonce.category.title}}</strong>#}
-            </div> 
-                        <div class="row">
-                            <div class="col-md-3"><a href="{{ path('blog') }}" class="btn btn-primary">acceuil</a></div>
-                        </div>
-
-
-                        dans la categorie : <span class="font-weight-bold" >{{ annonce.category.nom}}</span>
-                    </div><hr>
-                    <div class="col-md-12 text-left">
-                        <label class="font-weight-bold col-md-2 text-center bg-secondary text-white p-2 rounded">Description</label>
-                        <div class="rounded border col-md-11 text-left p-3 mb-5 mr-2">{{ annonce.description }} </div>
+                    <p>
+                        Prix : {{ annonce.prix }}</p>
+                    <hr>
+                    <div class="metadata">Posté le {{annonce.createdAt | date('d/m/y') }} à {{annonce.createdAt | date('H:i') }} dans la categorie #### {# <strong>{{annonce.category.title}}</strong>#}
                     </div>
-                    
                     <div class="row">
-                        <div class="col-md-3"><a href="{{ path('blog') }}" class="btn btn-primary">acceuil</a></div>
-                        <div class="col-md-3"><a href="{{ path('blogEdit', {'id': annonce.id}) }}" class="btn btn-primary">Modifier</a> </div>
-                        <div class="col-md-3"><a href="{{ path('delete', {'id': annonce.id}) }}" class="btn btn-primary" onclick="return confirm('Attention ceci va supprimer l\'annonce')">Supprimer 
-                        </a> </div>
+                        <div class="col-md-3">
+                            <a id="divInfoPersoOn" href="{{ path('blog') }}" class="btn ">acceuil</a>
+                        </div>
                     </div>
-
-				</article>
-			</div>
+                </article>
+            </div>
             {# ################################################################################################################################# #}
-		</div>
-		<div class="col-md-4 border border-secondary rounded">
-			<div class="row ">
+        </div>
+        <div class="col-md-4 ">
+            <div class="row ">
                 <div class="containet border border-secondary rounded d-flex justify-around">
-                    <div class="col-md-5">
+                    <div id="colorPerso" class="col-md-5 ">
                         <div class="row">
                             <h4 class="text-center">Auteur</h4>
                         </div>
                         <div class="row">
-                            <img src={{user.image}} alt="avatar" class="img-thumbnail rounded-circle">
+                            <img src={{user.image}} alt="avatar" class="img-thumbnail rounded-circle p-0">
                         </div>
-                        <div class="row">	
-                                <a href="{{ path('annonce_personnel', {'id':user.id}) }}" class="text-center">PAGE PERSONNEL</a>
+                        <div class="row">
+                            <a href="{{ path('annonce_personnel', {'id':user.id}) }}" class="text-center">PAGE PERSONNEL</a>
                         </div>
 
                     </div>
 
-                    <div class="col-md-7">
+                    <div id="colorPerso" class="col-md-7 border border-secondary rounded text-start">
 
                         <div class="row d-flex justify-content-center">
-                            <h3 class="text-center">Contact</h3>
+                            <h3 class="">Contact</h3>
                         </div>
                         <div class="row">
-                            <h5>Email: {{user.email}} </h5>
+                            <h5>Email:
+                                <hr class="p-0 m-0">{{user.email}}
+                            </h5>
                         </div>
                         <div class="row">
                             <h5>Tèl: xxxxxxx</h5>
                         </div>
-                        <div class="row">
-                            <h5>Ville : {{user.ville}}</h5>
-                            <h5>Adresse: {{user.adresse}}</h5>
+                        <div class="row ">
+                            <h5>Ville : {{user.ville}}
+                            </h5>
                         </div>
-                    
+                        <div class="row">
+                            <h5>Adresse: {{user.adresse}}
+                            </h5>
+                        </div>
+
                     </div>
                 </div>
             </div>
-                <br>
+            <br>
             <div class="row">
-                <div class="col-md-12 border border-secondary rounded d-flex justify-around">
+                <div id="colorPerso" class="col-md-12 border border-secondary rounded d-flex justify-around">
                     <section>
                         {% for annoncePersonnel in user.annonce %}
                         <div class="row">
                             <img class="card-img-top" src="{{ asset('images/produits/' ~ annoncePersonnel.image ) }}" alt="Card image cap">
-                            {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({"640/480": "320/140"}) }}"> #}
-                            <strong class="text-center mx-auto">{{ annoncePersonnel.title }}</strong> 
+                            {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}"> #}
+                            <strong class="text-center mx-auto">{{ annoncePersonnel.title }}</strong>
                         </div>
                         <br>
-                             <a href="{{ path('blog_show', {'id':annoncePersonnel.id}) }}" class="btn btn-primary">Voir plus</a>
-                        <br>
-                    {% endfor %}
+                        <a id="divInfoPersoOn" href="{{ path('blog_show', {'id':annoncePersonnel.id}) }}" class="btn ">Voir plus</a>
+                        <br> {% endfor %}
 
                     </section>
                 </div>
             </div>
-                
-			
-		</div>
-
-	</div>
 
 
-{% endblock %}
+        </div>
+
+    </div>
+
+
+    {% endblock %}
