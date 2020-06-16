@@ -1,50 +1,36 @@
-{% extends 'base.html.twig' %}
-
-{# {% form_theme formAnnonce 'bootstrap_4_layout.html.twig' %} #}
-
-{% block body %}
+{% extends 'base.html.twig' %} {# {% form_theme formAnnonce 'bootstrap_4_layout.html.twig' %} #} {% block body %}
 
 <div class="container mx-auto">
     <h1 class="text-center mt-3">
-        {% if editMode %}
-            MODIFICATION DE L'ANNONCE
-        {% else %}
-             DEPOSER UNE ANNONCE
-        {% endif %}
-    </h1><hr>
-    {{ form_start(formAnnonce, { 'attr' : { 'class' : 'col-md-6 bg-secondary rounded p-3 text-white mb-5 mx-auto' }} ) }}
+        {% if editMode %} MODIFICATION DE L'ANNONCE {% else %} DEPOSER UNE ANNONCE {% endif %}
+    </h1>
+    <hr> 
+{{ form_start(formAnnonce, { 'attr' : { 'class' : 'col-md-6  rounded border border-secondary p-3 text-white mb-5 mx-auto',
+'id' : 'divInfoPersoOff' }} ) }} 
 
+{# {{ dump(userSS) }} #} {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : {'disabled': 'disabled') }} #} {# {{ form_row(formAnnonce.user,
+{'label': 'Prenom'}, {'attr' : { 'value': app.user.id}}) }} #} {#
+<div class="form-group">
+    <label for="user">Prenom</label>
+    <input type='text' class="form-control" name="user" id="user">
+</div> #} 
+{{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }} 
+{# {{ form_row(formAnnonce.category) }} #}
+{{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }} 
+{{ form_row(formAnnonce.Image,{'attr': {'placeholder': "Image de l'annonce"}}) }} 
+{# {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }} #} {# {{ form_row(formAnnonceuser, {'attr': {'placeholder': "nom etulisateur"}} ) }}#} {# {{ form_row(formAnnonce.category)
+}}#} {# {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }} {{ form_row(formAnnonceImage, {'attr': {'placeholder': "Image de l'annonce"}}) }} #}
 
-        {# {{ dump(userSS) }} #}
-        {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : {'disabled': 'disabled') }} #}
-        {# {{ form_row(formAnnonce.user, {'label': 'Prenom'}, {'attr' : { 'value': app.user.id}}) }} #}
-        {# <div class="form-group">
-            <label for="user">Prenom</label>
-            <input type='text' class="form-control" name="user" id="user">
-        </div> #}
+<button id='colorBtnInput' type="submit" class="btn ">
 
-        {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}    
-        {# {{ form_row(formAnnonce.category) }} #}
-
-        {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
-        {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }}
-         
-        {# {{ form_row(formAnnonce.title, {'attr': {'placeholder': "titre de l'annonce"}} ) }}                        #}
-        {# {{ form_row(formAnnonce.user, {'attr': {'placeholder': "nom etulisateur"}} ) }}#}
-        {# {{ form_row(formAnnonce.category) }}#}
-
-        {# {{ form_row(formAnnonce.Prix, {'attr': {'placeholder': "Prix de l'annonce"}} ) }}                              
-        {{ form_row(formAnnonce.Image, {'attr': {'placeholder': "Image de l'annonce"}}) }} #}
-
-        <button type="submit" class="btn btn-success">                  
             {% if editMode %}
                 Enregistrer les modification
             {% else %}
                 Ajouter l'annonce
             {% endif %}
-        </button>                                                             
-        
-    {{ form_end(formAnnonce) }}
+</button>
+{{ form_end(formAnnonce) }}
+
 </div>
 
 {% endblock %}

@@ -18,13 +18,24 @@
         <div id="colorPerso" class="col-md-12 d-flex rounded border border-secondary">
 
             {#
-            <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white"> #} {{ form_start( formDonneePersonnel, { 'attr' : { 'class' : 'col-md-12 rounded p-3 text-white mb-5 ' }}) }} {{ form_row(formDonneePersonnel.image, { 'label' : "Photo de profil"}) }} {{ form_row(formDonneePersonnel.prenom) }} {{ form_row(formDonneePersonnel.nom)
-                }} {{ form_row(formDonneePersonnel.email) }} {{ form_row(formDonneePersonnel.ville) }} {{ form_row(formDonneePersonnel.password, { 'label' : "Mot de passe"}) }} {{ form_row(formDonneePersonnel.confirm_password, { 'label' : "Confirmez votre
-                mot de passe"}) }} {{ form_row(formDonneePersonnel.adresse) }} {{ form_row(formDonneePersonnel.pseudo) }} {{ form_row(formDonneePersonnel.civilite) }} {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance"}) }}
+            <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white"> #}
+            {{ form_start( formDonneePersonnel, { 'attr' : { 'class' : 'col-md-12 rounded p-3 text-dark mb-5, ' }}) }} 
+            {{ form_row(formDonneePersonnel.image, { 'label' : "Photo de profil", 'id': 'divInfoPersoOn'}) }} 
+            {{ form_row(formDonneePersonnel.prenom,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.nom,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.email,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.ville,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.password, { 'label' : "Mot de passe",'id': 'divInfoPersoOn'}) }} 
+            {{ form_row(formDonneePersonnel.confirm_password, { 'label' : "Confirmez votre mot de passe", 'id': 'divInfoPersoOn'}) }} 
+            {{ form_row(formDonneePersonnel.adresse,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.pseudo,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.civilite,{'id' : 'divInfoPersoOn' }) }} 
+            {{ form_row(formDonneePersonnel.birth, { 'label' : "Date de naissance", 'id': 'divInfoPersoOn'}) }}
 
                 <div class="col-md-12 d-flex justify-content-end">
-                    <button id="colorBtnInputy " class="btn border border-secondary rounded" type="submit">Modifier</button>
+                    <input id="divInfoPersoOn" type="submit" value="Modifier" class="btn">
                 </div>
+
 
                 {{ form_end(formDonneePersonnel) }} {# </div> #}
         </div>

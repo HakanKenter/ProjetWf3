@@ -1,39 +1,48 @@
-{% extends 'base.html.twig' %} {% block title %}Hello BlogController!{% endblock %} {% block body %}
+{% extends 'base.html.twig' %}
+{% block title %}Hello BlogController!
+{% endblock %}
+{% block body %}
 
-<h2 class="text-center my-5 col-md-3 mx-auto  p-2">Page personnelle</h2>
-<hr>
+	<h2 class="text-center my-5 col-md-3 mx-auto  p-2">Page personnelle</h2>
+	<hr>
 
-<div class="row d-flex justify-content-between mt-5 mb-5">
-    <div class="col-md-4 rounded">
-        <div id="colorPerso" class="col-md-10 rounded d-flex flex-column justify-content-center ml-5 text-white text-center p-3 border border-secondary ">
+	<div class="row d-flex justify-content-between mt-5 mb-5">
+		<div class="col-md-4 rounded">
+			<div id="colorPerso" class="col-md-10 rounded d-flex flex-column justify-content-center ml-5 text-white text-center p-3 border border-secondary ">
 
-            <img class="mt-4 rounded" src="{{ user.image|replace({" 640/480 ": "350/200 "}) }}">
-            <hr>
-            <p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark ">{{ user.pseudo }}</p>
-            <p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark">{{ user.email|raw }}</p>
-            {% if app.user %}
-            <a id="divInfoPersoOn" class="p-2 rounded  text-white text-decoration-none border-top border-dark" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a> {% endif %} {#
-            <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
-        </div>
-    </div>
+				<img class="mt-4 rounded" src="{{ user.image|replace({" 640/480 ": "350/200 "}) }}">
+				<hr>
+				<p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark ">{{ user.pseudo }}</p>
+				<p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark">{{ user.email|raw }}</p>
+				{% if app.user %}
+					<a id="divInfoPersoOn" class="p-2 rounded  text-white text-decoration-none border-top border-dark" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a>
+				{% endif %}
+				{#
+				            <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
+			</div>
+		</div>
 
-    <div id="colorPerso" class="col-md-8 rounded border border-secondary">
-        <div class="col-md-12 d-flex justify-content-center  ">
+		<div id="colorPerso" class="col-md-8 rounded border border-secondary">
+			<div class="col-md-12 d-flex justify-content-center  ">
 
-            <div id="colorPerso" class="row mb-1 d-flex justify-content-center  text-white">
-                {% for annoncePersonnel in user.annonce %}
-                <div class="col-md-3   m-4 p-3 bg-secondary rounded border border-dark">
-                    <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}">
-                    <strong>{{ annoncePersonnel.title }}</strong>
-                    <p>{{ annoncePersonnel.prix }} €</p>
-                    <p class="text-right">Posté le {{ annoncePersonnel.CreatedAt|date('d/m/Y') }} à {{ annoncePersonnel.CreatedAt|date('H:i:s') }}</p>
-                    <a id="colorBtnInput " class="btn  rounded border border-dark" href="#">Voir</a>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+				<div id="colorPerso" class="row mb-1 d-flex justify-content-center  text-white">
+					{% for annoncePersonnel in user.annonce %}
+						<div class="col-md-3   m-4 p-3 bg-secondary rounded border border-dark">
+							<img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}">
+							<strong>{{ annoncePersonnel.title }}</strong>
+							<p>{{ annoncePersonnel.prix }}
+								€</p>
+							<p class="text-right">Posté le
+								{{ annoncePersonnel.CreatedAt|date('d/m/Y') }}
+								à
+								{{ annoncePersonnel.CreatedAt|date('H:i:s') }}</p>
+							<a id="colorBtnInput " class="btn  rounded border border-dark" href="#">Voir</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 {% endblock %}
