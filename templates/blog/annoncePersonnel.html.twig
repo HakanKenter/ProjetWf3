@@ -1,4 +1,28 @@
-{% extends 'base.html.twig' %}
+
+{% extends 'base.html.twig' %} 
+
+{% block title %}Hello BlogController!{% endblock %} 
+
+
+{% block body %}
+
+<h2 class="text-center my-5 col-md-3 mx-auto  p-2">Page personnelle</h2>
+<hr>
+
+<div class="row d-flex justify-content-between mt-5 mb-5">
+    <div class="col-md-4 rounded">
+        <div id="colorPerso" class="col-md-10 rounded d-flex flex-column justify-content-center ml-5 text-white text-center p-3 border border-secondary ">
+
+            <img class="card-img-top" src="{{ asset('images/produits/' ~ user.image ) }}" alt="Card image cap">
+            {# <img class="mt-4 rounded" src="{{ user.image|replace({" 640/480 ": "350/200 "}) }}"> #}
+            <hr>
+            <p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark ">{{ user.pseudo }}</p>
+            <p id="divInfoPersoOff" class="p-2 rounded bg-secondary border-top border-dark">{{ user.email|raw }}</p>
+            {% if app.user %}
+            <a id="divInfoPersoOn" class="p-2 rounded  text-white text-decoration-none border-top border-dark" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a> {% endif %} {#
+            <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
+
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Hello BlogController!{% endblock %}
 
@@ -17,32 +41,31 @@
                 {% if app.user %}
                     <a class="p-2 rounded bg-primary text-white text-decoration-none" href="{{ path('modifierProfil', {'id': app.user.id}) }}">Mes Informations personnel</a>      
                 {% endif %}
-                {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> #}
+                {# <p class="p-2 rounded bg-secondary">{{ user.telephone|raw }}</p> 
             </div>
+       
+
         </div>
+    </div>
+#}
+    <div id="colorPerso" class="col-md-8 rounded border border-secondary">
+        <div class="col-md-12 d-flex justify-content-center  ">
 
-        <div class="col-md-8">
-            <div class="col-md-12 d-flex justify-content-center mt-5 pt-5">
-
-                <div class="row border rounded mb-1 d-flex justify-content-center bg-dark text-white">
-                    {% for annoncePersonnel in user.annonce %}
-                        <div class="col-md-3 border border-dark rounded m-4 p-3 bg-secondary">
-                            <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({"640/480": "320/140"}) }}">
-                            <strong>{{ annoncePersonnel.title }}</strong>
-                            <p>{{ annoncePersonnel.prix }} €</p>
-                            <p class="text-right">Posté le {{ annoncePersonnel.CreatedAt|date('d/m/Y') }} à {{ annoncePersonnel.CreatedAt|date('H:i:s') }}</p>
-                            {# <a class="btn btn-success" href="#">Voirnnnn</a> #}
-                             <a href="{{ path('blog_show', {'id':annoncePersonnel.id}) }}" class="btn btn-primary">Voir l'annonce</a>
-                             {# <br> #}
-                             <a href="{{ path('blogEdit', {'id': annoncePersonnel.id}) }}" class="btn btn-primary mt-3">Modifier</a>
-                             
-                             <a href="{{ path('delete', {'id': annoncePersonnel.id}) }}" class="btn btn-primary mt-3" onclick="return confirm('Attention ceci va supprimer l\'annonce')">Supprimer</a> 
-                        </div>
-                    {% endfor %}
+            <div id="colorPerso" class="row mb-1 d-flex justify-content-center  text-white">
+                {% for annoncePersonnel in user.annonce %}
+                <div class="col-md-3   m-4 p-3 bg-secondary rounded border border-dark">
+                    <img class="card-img-top" src="{{ asset('images/produits/' ~ annoncePersonnel.image ) }}" alt="Card image cap">
+                    {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}"> #}
+                    <strong>{{ annoncePersonnel.title }}</strong>
+                    <p>{{ annoncePersonnel.prix }} €</p>
+                    <p class="text-right">Posté le {{ annoncePersonnel.CreatedAt|date('d/m/Y') }} à {{ annoncePersonnel.CreatedAt|date('H:i:s') }}</p>
+                    <a id="colorBtnInput " class="btn  rounded border border-dark" href="#">Voir</a>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    
+</div>
+
 
 {% endblock %}
