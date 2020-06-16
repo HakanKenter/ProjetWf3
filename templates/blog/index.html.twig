@@ -2,10 +2,28 @@
 
 {% block Bienvenue %}
 
-    <h1 id="titre-accueil" class='mx-auto text-white mb-5 text-center bienvenue ml-2 d-none d-sm-block'>{{ title }}</h1>
+
+    <h1 id="titre-accueil" class='mx-auto text-white mb-5 text-center bienvenue ml2'>{{ title }}</h1>
+
                         
 {% endblock %}
 
+{# {% block Categories %}
+  
+    <div class="col-md-4 rounded p-5 categories">                            
+        {{form_start(formCategory)}}
+            <div class="form-row">
+                <div id="cadre-recherche" class="categories-cadre form-group rounded p-2 pl-5 pr-5 mx-auto m-0 text-white">
+                    {{ form_row(formCategory.category) }}
+                </div>
+                <div class="mt-5 d-flex justify-content-center mx-auto">
+                    <button type="submit" class="btn btn-success bouton-rechercher">Rechercher</button>
+                </div>
+            </div>
+        {{form_end(formCategory)}}
+    </div>
+
+{% endblock %} #}
 
 {% block body %}
    

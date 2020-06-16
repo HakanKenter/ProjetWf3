@@ -1,8 +1,10 @@
 {% extends "base.html.twig" %} 
 
-{% block body %}
+
+
 
 <div class="row text-center">
+
     <div class="container d-flex justify-around mt-5 mb-5">
         <br>
         <br>
@@ -10,8 +12,10 @@
         <div class="col-md-8">
             <div id="colorPerso" class="image">
                 <article class="border border-secondary rounded">
+
                     <img class="card-img-top" src="{{ asset('images/produits/' ~ annonce.image ) }}" alt="Card image cap">
                     {# <img src="{{ annonce.Image }}" alt="{{ annonce.title }}" class="col-md-12 rounded"> #}
+
                     <hr>
                     <h2>{{ annonce.title }}</h2>
 
@@ -62,6 +66,10 @@
                             <h5>Ville : {{user.ville}}
                             </h5>
                         </div>
+                        <div class="row ">
+                            <h5>Ville : {{user.ville}}
+                            </h5>
+                        </div>
                         <div class="row">
                             <h5>Adresse: {{user.adresse}}
                             </h5>
@@ -76,8 +84,12 @@
                     <section>
                         {% for annoncePersonnel in user.annonce %}
                         <div class="row">
+
+                           {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}"> #}
+
                             <img class="card-img-top" src="{{ asset('images/produits/' ~ annoncePersonnel.image ) }}" alt="Card image cap">
                             {# <img class="col-md-12 rounded" src="{{ annoncePersonnel.image|replace({" 640/480 ": "320/140 "}) }}"> #}
+
                             <strong class="text-center mx-auto">{{ annoncePersonnel.title }}</strong>
                         </div>
                         <br>
